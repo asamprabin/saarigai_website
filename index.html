@@ -6,7 +6,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <title>Saarigai — Excel to Software</title>
   <meta name="description"
-    content="Saarigai turns Excel businesses into custom software businesses. 2 proven case studies (Romana & JK Traders): from spreadsheet chaos to custom business systems that scaled operations, boosted profit margins, and restored control for $2,000.">
+    content="Saarigai turns Excel businesses into custom software businesses. 3 proven case studies (Romana, JK Traders & Sentinel IT Training): from spreadsheet chaos to custom business systems and professional digital platforms that scaled operations, boosted profit margins, and restored control.">
   <style>
     :root {
       --navy: #071b3a;
@@ -473,11 +473,94 @@
       padding-left: 20px
     }
 
+    .screens-strip {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 16px;
+      margin-top: 24px
+    }
+
+    .screens-strip a {
+      display: block;
+      border-radius: 16px;
+      overflow: hidden;
+      background: #fff;
+      border: 1px solid #dbe8e4;
+      box-shadow: 0 10px 25px rgba(11, 43, 79, .06);
+      transition: .25s
+    }
+
+    .screens-strip a:hover {
+      transform: translateY(-4px);
+      box-shadow: 0 18px 35px rgba(11, 43, 79, .12)
+    }
+
+    .screens-strip img {
+      display: block;
+      width: 100%;
+      height: auto
+    }
+
+    .screens-strip span {
+      display: block;
+      padding: 10px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--navy)
+    }
+
+    @media(max-width:700px) {
+      .screens-strip {
+        grid-template-columns: 1fr
+      }
+    }
+
+    .app-links {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      margin-top: 14px
+    }
+
+    .app-links a {
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--navy);
+      background: #eef7f3;
+      border: 1px solid var(--line);
+      padding: 7px 12px;
+      border-radius: 999px;
+      transition: .25s
+    }
+
+    .app-links a:hover {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy)
+    }
+
+    .price-label {
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--muted);
+      margin-top: 16px
+    }
+
     .price {
-      font-size: 58px;
-      font-weight: 950;
-      color: var(--green);
-      letter-spacing: -3px
+      font-size: 30px;
+      font-weight: 900;
+      color: var(--navy);
+      letter-spacing: -1px;
+      margin-top: 2px
+    }
+
+    .price span {
+      font-size: 14px;
+      font-weight: 700;
+      color: var(--muted);
+      letter-spacing: 0
     }
 
     .quote {
@@ -873,6 +956,58 @@
       color: #06243a
     }
 
+    .about-card {
+      display: flex;
+      align-items: center;
+      gap: 42px;
+      background: #f8fcfb;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 45px 50px
+    }
+
+    .about-photo-wrap {
+      flex-shrink: 0
+    }
+
+    .about-photo {
+      width: 110px;
+      height: 110px;
+      border-radius: 50%;
+      background: var(--navy);
+      color: #fff;
+      display: grid;
+      place-items: center;
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -1px
+    }
+
+    .about-name {
+      font-size: 30px;
+      letter-spacing: -1px;
+      margin: 10px 0 12px
+    }
+
+    .about-bio {
+      color: var(--muted);
+      line-height: 1.7;
+      max-width: 640px;
+      margin: 0 0 20px
+    }
+
+    @media(max-width:700px) {
+      .about-card {
+        flex-direction: column;
+        text-align: center;
+        padding: 36px 26px
+      }
+
+      .about-bio {
+        max-width: none
+      }
+    }
+
     .process {
       background: #f8fcfb
     }
@@ -924,6 +1059,16 @@
 
     .footer .logo {
       font-size: 27px
+    }
+
+    .footer-note {
+      margin-top: 18px;
+      padding-top: 18px;
+      border-top: 1px solid #eef3f1;
+      color: #93a1b3;
+      font-size: 12px;
+      line-height: 1.6;
+      max-width: 720px
     }
 
     .reveal {
@@ -1086,140 +1231,6 @@
         padding: 30px 20px
       }
     }
-
-    .lang-prompt {
-      position: fixed;
-      bottom: 24px;
-      right: 24px;
-      z-index: 99999;
-      max-width: 400px;
-      width: calc(100vw - 40px);
-      background: rgba(255, 255, 255, .96);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      border: 1px solid rgba(22, 166, 115, .28);
-      border-radius: 20px;
-      padding: 20px 22px;
-      box-shadow: 0 22px 50px rgba(7, 27, 58, .18), 0 2px 10px rgba(22, 166, 115, .1);
-      transform: translateY(120%);
-      opacity: 0;
-      transition: transform .4s cubic-bezier(.16, 1, .3, 1), opacity .3s ease;
-      pointer-events: none
-    }
-
-    .lang-prompt.active {
-      transform: translateY(0);
-      opacity: 1;
-      pointer-events: auto
-    }
-
-    .lang-prompt-head {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      margin-bottom: 12px
-    }
-
-    .lang-prompt-kicker {
-      display: inline-flex;
-      align-items: center;
-      gap: 8px;
-      font-size: 11px;
-      font-weight: 900;
-      letter-spacing: 1.5px;
-      text-transform: uppercase;
-      color: var(--green)
-    }
-
-    .lang-prompt-close {
-      background: transparent;
-      border: 0;
-      outline: 0;
-      font-size: 18px;
-      line-height: 1;
-      color: #8a99ad;
-      cursor: pointer;
-      padding: 4px;
-      border-radius: 6px;
-      transition: .2s
-    }
-
-    .lang-prompt-close:hover {
-      color: var(--navy);
-      transform: scale(1.15)
-    }
-
-    .lang-prompt-text {
-      font-size: 14px;
-      line-height: 1.55;
-      color: var(--ink);
-      margin: 0 0 16px
-    }
-
-    .lang-prompt-text strong {
-      color: var(--navy);
-      font-weight: 800
-    }
-
-    .lang-prompt-actions {
-      display: flex;
-      gap: 10px;
-      align-items: center
-    }
-
-    .lang-btn {
-      flex: 1;
-      padding: 12px 14px;
-      border-radius: 12px;
-      font-size: 13px;
-      font-weight: 800;
-      cursor: pointer;
-      text-align: center;
-      transition: all .2s ease;
-      border: 0;
-      font-family: inherit
-    }
-
-    .lang-btn-primary {
-      background: var(--green);
-      color: #fff;
-      box-shadow: 0 8px 20px rgba(22, 166, 115, .28)
-    }
-
-    .lang-btn-primary:hover {
-      background: #139265;
-      transform: translateY(-1px);
-      box-shadow: 0 10px 24px rgba(22, 166, 115, .36)
-    }
-
-    .lang-btn-secondary {
-      background: #f4f8f6;
-      color: var(--navy);
-      border: 1px solid var(--line)
-    }
-
-    .lang-btn-secondary:hover {
-      background: #e7f2ed
-    }
-
-    @media(max-width:600px) {
-      .lang-prompt {
-        bottom: 16px;
-        right: 16px;
-        left: 16px;
-        width: auto;
-        max-width: none
-      }
-
-      .lang-prompt-actions {
-        flex-direction: column-reverse;
-        gap: 8px
-      }
-
-      .lang-btn {
-        width: 100%
-      }
-    }
   </style>
 </head>
 
@@ -1227,10 +1238,9 @@
   <nav class="container">
     <a class="logo" href="#">Saarigai<span class="leaf">◆</span></a>
     <div class="links"><a href="#case">Case Studies</a><a href="#process">How We Build</a><a href="#impact">Why
-        Saarigai</a></div>
+        Saarigai</a><a href="#about">About</a></div>
     <div class="nav-actions">
       <div class="language-wrap"><span>🌐</span><select id="languageSelect" aria-label="Select language">
-          <option value="auto">Auto detect</option>
           <option value="en">English</option>
           <option value="ta">தமிழ்</option>
           <option value="hi">हिन्दी</option>
@@ -1306,8 +1316,9 @@
       <div class="kicker"><span class="dot"></span> Ideas → Software → Real Scale</div>
       <h1>We turn Excel businesses<br>into <span class="gradient">software businesses.</span></h1>
       <p class="sub">Same business. Better tools. Real scale. We use modern AI-assisted engineering to turn
-        spreadsheet-bound operations into custom, high-impact business software — built fast for $2,000.</p>
-      <div class="hero-buttons"><a class="btn primary" href="#case">Explore the 2 case studies ↓</a><a
+        spreadsheet-bound operations into custom, high-impact business software — built fast, scoped to what you
+        actually need.</p>
+      <div class="hero-buttons"><a class="btn primary" href="#case">Explore the 3 case studies ↓</a><a
           class="btn secondary" href="#contact">Talk to Saarigai</a></div>
     </div>
   </header>
@@ -1316,19 +1327,20 @@
     <div class="section-head">
       <div>
         <div class="eyebrow">Proven Client Results</div>
-        <h2>2 businesses moved from Excel to custom software.</h2>
+        <h2>3 businesses moved to custom digital systems.</h2>
       </div>
-      <p>From multi-city acquisition handovers to high-volume wholesale distribution — see how custom-built software
-        unlocked scale, increased profit margins, and restored operational control.</p>
+      <p>From multi-city acquisition handovers to high-volume wholesale distribution to a professional training brand —
+        see how custom-built software and websites unlocked scale, increased profit margins, and restored operational
+        control.</p>
     </div>
 
     <!-- Executive Stats Bar -->
     <div class="stats-bar">
       <div class="stats-grid">
         <div class="stat-item">
-          <div class="stat-num">2<span class="stat-accent">+</span></div>
+          <div class="stat-num">3<span class="stat-accent">+</span></div>
           <span class="stat-label">Companies Transformed</span>
-          <span class="stat-sub">100% off fragile Excel spreadsheets</span>
+          <span class="stat-sub">From spreadsheets & scratch to real systems</span>
         </div>
         <div class="stat-item">
           <div class="stat-num">25<span class="stat-accent">h+</span></div>
@@ -1358,8 +1370,12 @@
         <span>🍬 Case 02: JK Traders</span>
         <span class="tag">Wholesale Sweets & B2B Apps</span>
       </button>
+      <button type="button" class="case-tab" data-target="case-sentinel" role="tab" aria-selected="false">
+        <span>🛡️ Case 03: Sentinel IT Training</span>
+        <span class="tag">Training Brand & Booking Platform</span>
+      </button>
       <button type="button" class="case-tab" data-target="all" role="tab" aria-selected="false">
-        <span>⚡ View Both Stories</span>
+        <span>⚡ View All Stories</span>
       </button>
     </div>
 
@@ -1390,12 +1406,21 @@
               <li>Delivered mobile & desktop access for team members</li>
               <li>Launched in days with zero operational downtime</li>
             </ul>
+            <div class="app-links">
+              <a href="https://play.google.com/store/apps/details?id=com.radiance.romanauser&hl=en_IN" target="_blank"
+                rel="noopener">📱 Retailer App</a>
+              <a href="https://play.google.com/store/apps/details?id=com.radiance.romanadriver&hl=en_IN" target="_blank"
+                rel="noopener">🚚 Driver App</a>
+              <a href="https://play.google.com/store/apps/details?id=com.radiance.romanaadmin&hl=en_IN" target="_blank"
+                rel="noopener">⚙️ Admin App</a>
+            </div>
           </article>
           <article class="card">
             <div class="num">3</div>
             <h3>The result & ROI</h3>
             <p>Kamal took over a business running on custom software from day one.</p>
-            <div class="price">$2,000</div>
+            <div class="price-label">Investment</div>
+            <div class="price">Starting at $2,000<span> · scoped to this build</span></div>
             <div class="quote">“A business that was on spreadsheets is now on software — ready for the future.”</div>
           </article>
         </div>
@@ -1415,6 +1440,29 @@
             <b>Live Mobile Dashboard</b>
             <span>Staff fully trained in 48 hours</span>
           </div>
+        </div>
+        <div class="screens-strip">
+          <a href="https://play.google.com/store/apps/details?id=com.radiance.romanauser&hl=en_IN" target="_blank"
+            rel="noopener">
+            <img
+              src="https://play-lh.googleusercontent.com/iXxD7CH5MYH2XJ9RTAAatajI-nGMtO9Kit_i0HFta6ZXwa8U_Z2zaIJRy_W8MjNfND4ssf3FnnFDuvzbUuVb=w526-h296"
+              alt="Romana Retailer App screenshot, live on Google Play" loading="lazy">
+            <span>Retailer App — live on Play Store</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.radiance.romanadriver&hl=en_IN" target="_blank"
+            rel="noopener">
+            <img
+              src="https://play-lh.googleusercontent.com/q5pK2RnhAP38s_8CnMkny1bhWoiaLJskLIoO5eafpEBOS_NnxEp1l6hcWxe8icx2msOP3BDci51lPFbvNBjB_g=w526-h296"
+              alt="Romana Driver App screenshot, live on Google Play" loading="lazy">
+            <span>Driver App — live on Play Store</span>
+          </a>
+          <a href="https://play.google.com/store/apps/details?id=com.radiance.romanaadmin&hl=en_IN" target="_blank"
+            rel="noopener">
+            <img
+              src="https://play-lh.googleusercontent.com/wMggCyjlmoiKW9kXD7huaY5onHJRw-J9OH5e1QA5LYmM3xrFE8OpyLfBY7bXtdlpSsDIVwwg1f_abgv8nZqE0ws=w526-h296"
+              alt="Romana Admin App screenshot, live on Google Play" loading="lazy">
+            <span>Admin App — live on Play Store</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1455,7 +1503,8 @@
             <div class="num" style="background:#fef3c7;color:#b45309;">3</div>
             <h3>The result & ROI</h3>
             <p>Turned a manual wholesale operation into a scalable digital sweets distribution powerhouse.</p>
-            <div class="price">$2,000</div>
+            <div class="price-label">Investment</div>
+            <div class="price">Starting at $2,000<span> · scoped to this build</span></div>
             <div class="quote">“Our retailers now order Macaroons and Halwa straight from their mobile app, and our
               admin app handles dispatch instantly. Zero spreadsheet confusion.”</div>
           </article>
@@ -1476,6 +1525,74 @@
             <b>Dual Mobile Apps</b>
             <span>Owner runs wholesale from their phone</span>
           </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 3: Sentinel IT Training -->
+    <div class="case-panel" id="case-sentinel">
+      <div class="case" style="background:linear-gradient(135deg,#eef5ff,#e6f7f2);margin-top:15px;">
+        <div class="case-badge" style="background:rgba(37,99,235,.12);color:#1d4ed8;">Case 03 · Professional
+          Training Brand & Booking Platform</div>
+        <div class="case-title">Sentinel IT Training: A Certification Trainer's Practice, Turned Into a Brand</div>
+        <div class="route"><span>Mahesh Subramanian · Cybersecurity Trainer</span><b>→</b><span>Sentinel IT Training
+            Academy</span></div>
+        <div class="cards">
+          <article class="card">
+            <div class="num" style="background:#dbeafe;color:#1d4ed8;">1</div>
+            <h3>The situation</h3>
+            <p>Mahesh is a CISSP, CCSP, CISM & CISA-certified trainer with 22+ years of industry experience and 1,300+
+              professionals trained — but had no dedicated online presence to match that track record.</p>
+            <p>Prospective students had no single place to see his certifications, book a session, or read
+              testimonials from past learners.</p>
+          </article>
+          <article class="card">
+            <div class="num" style="background:#dbeafe;color:#1d4ed8;">2</div>
+            <h3>What Saarigai built</h3>
+            <p>A complete brand website and booking platform for the training practice:</p>
+            <ul>
+              <li>Course catalog covering CISSP, CISM, CISA, CCSP, PMP, ITIL & more</li>
+              <li>Built-in booking system for consultations & course enrolment</li>
+              <li>Testimonials & blog sections to build trust with prospects</li>
+              <li>Clean, credibility-first design suited to a Big 4 / enterprise audience</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="num" style="background:#dbeafe;color:#1d4ed8;">3</div>
+            <h3>The result</h3>
+            <p>Mahesh's 22+ years of experience and 100% first-attempt pass rate now have a professional home online,
+              with a self-serve booking flow for new students.</p>
+            <div class="quote">See the live site: <a href="https://www.sentinel-it-training.com/" target="_blank"
+                rel="noopener" style="color:var(--navy);font-weight:800;">sentinel-it-training.com ↗</a></div>
+          </article>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi-box">
+            <small>Credibility</small>
+            <b>22+ Years, 1,300+ Trained</b>
+            <span>Now presented with a professional digital front door</span>
+          </div>
+          <div class="kpi-box">
+            <small>Conversion</small>
+            <b>Self-Serve Booking</b>
+            <span>Students book consultations without a phone call</span>
+          </div>
+          <div class="kpi-box">
+            <small>Trust</small>
+            <b>Testimonials & Blog</b>
+            <span>Social proof built directly into the site</span>
+          </div>
+        </div>
+        <div class="screens-strip" style="grid-template-columns:220px 1fr">
+          <a href="https://www.sentinel-it-training.com/about" target="_blank" rel="noopener">
+            <img src="https://www.sentinel-it-training.com/mahesh-training.jpg"
+              alt="Mahesh Subramanian, cybersecurity trainer at Sentinel IT Training" loading="lazy">
+            <span>Mahesh Subramanian, Trainer</span>
+          </a>
+          <a href="https://www.sentinel-it-training.com/" target="_blank" rel="noopener"
+            style="display:flex;align-items:center;justify-content:center;padding:24px;text-align:center;">
+            <span style="padding:0;font-size:14px;">Visit the live site → sentinel-it-training.com</span>
+          </a>
         </div>
       </div>
     </div>
@@ -1547,8 +1664,8 @@
             </li>
             <li>
               <span class="comp-icon">💎</span>
-              <div><span class="comp-highlight">Frictionless 10x Scale:</span> Handle 3x–10x order volume effortlessly
-                for a flat $2,000 build investment.</div>
+              <div><span class="comp-highlight">Frictionless 10x Scale:</span> Handle 3x–10x order volume effortlessly,
+                with builds starting at $2,000 depending on scope.</div>
             </li>
           </ul>
         </div>
@@ -1607,6 +1724,23 @@
     </div>
   </section>
 
+  <section id="about" class="container reveal">
+    <div class="about-card">
+      <div class="about-photo-wrap">
+        <div class="about-photo">SP</div>
+      </div>
+      <div>
+        <div class="eyebrow">Who's Behind Saarigai</div>
+        <h2 class="about-name">Sam Prabin</h2>
+        <p class="about-bio">I build Saarigai — a one-person practice using AI-assisted engineering to turn
+          spreadsheet-run and scattered operations into custom software, mobile apps, and professional web
+          platforms. Based in India, working with clients wherever the spreadsheets are.</p>
+        <a class="btn secondary" href="https://www.linkedin.com/in/a-sam-prabin/" target="_blank" rel="noopener">Connect
+          on LinkedIn →</a>
+      </div>
+    </div>
+  </section>
+
   <section id="contact" class="container reveal">
     <div class="section-head">
       <div>
@@ -1618,32 +1752,24 @@
     <div class="case" style="text-align:center">
       <div class="case-title" style="margin:auto">Let's build yours.</div>
       <p class="sub" style="margin:20px auto">Custom business software for small businesses with big possibilities.</p>
-      <a class="btn primary" href="mailto:hello@saarigai.com">Start a conversation →</a>
+      <a class="btn primary" href="https://www.linkedin.com/in/a-sam-prabin/" target="_blank" rel="noopener">Connect
+        on LinkedIn →</a>
     </div>
   </section>
 
   <footer>
-    <div class="container footer">
-      <div class="logo">Saarigai<span class="leaf">◆</span></div>
-      <div>BUSINESS SOFTWARE FOR A BRIGHTER TOMORROW</div>
-      <div>www.saarigai.com · 🌐 100+ languages</div>
+    <div class="container">
+      <div class="footer">
+        <div class="logo">Saarigai<span class="leaf">◆</span></div>
+        <div>BUSINESS SOFTWARE FOR A BRIGHTER TOMORROW</div>
+        <div><a href="https://www.linkedin.com/in/a-sam-prabin/" target="_blank" rel="noopener">LinkedIn</a> · 🌐 60+
+          languages</div>
+      </div>
+      <div class="footer-note">This site remembers your language choice in your browser's local storage. No
+        location data is collected, and nothing is shared with third parties beyond Google Translate, which powers
+        the language switcher.</div>
     </div>
   </footer>
-
-  <aside class="lang-prompt notranslate" id="langPrompt" role="dialog" aria-labelledby="langPromptTitle"
-    aria-live="polite">
-    <div class="lang-prompt-head">
-      <div class="lang-prompt-kicker" id="langPromptTitle"><span class="dot"></span> Language Preference</div>
-      <button type="button" class="lang-prompt-close" id="langPromptCloseBtn"
-        aria-label="Close language confirmation">✕</button>
-    </div>
-    <p class="lang-prompt-text">Would you like to switch from English to <strong id="langPromptTarget">Tamil
-        (தமிழ்)</strong>?</p>
-    <div class="lang-prompt-actions">
-      <button type="button" class="lang-btn lang-btn-primary" id="langPromptSwitchBtn">Switch to Tamil (தமிழ்)</button>
-      <button type="button" class="lang-btn lang-btn-secondary" id="langPromptKeepBtn">Stay in English</button>
-    </div>
-  </aside>
 
   <script>
     const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show') }), { threshold: .12 });
@@ -1670,7 +1796,6 @@
 
     const select = document.getElementById('languageSelect');
     const STORAGE_KEY = 'saarigai-language';
-    const DISMISSED_KEY = 'saarigai-lang-dismissed';
 
     function normalizeLang(v) {
       if (!v) return 'en';
@@ -1679,23 +1804,6 @@
       if (x.startsWith('zh')) return 'zh-CN';
       return x.split('-')[0];
     }
-    const browserLang = normalizeLang(navigator.language || 'en');
-    const timezone = (typeof Intl !== 'undefined' && Intl.DateTimeFormat)
-      ? Intl.DateTimeFormat().resolvedOptions().timeZone
-      : (navigator.timeZone || '');
-
-    const timezoneMap = {
-      'Asia/Colombo': 'ta', 'Asia/Dhaka': 'bn', 'Asia/Kathmandu': 'ne', 'Asia/Karachi': 'ur',
-      'Asia/Dubai': 'ar', 'Asia/Riyadh': 'ar', 'Asia/Jerusalem': 'he', 'Asia/Tehran': 'fa',
-      'Asia/Tokyo': 'ja', 'Asia/Seoul': 'ko', 'Asia/Shanghai': 'zh-CN', 'Asia/Hong_Kong': 'zh-TW',
-      'Asia/Kuala_Lumpur': 'ms', 'Asia/Bangkok': 'th', 'Asia/Ho_Chi_Minh': 'vi',
-      'Europe/Paris': 'fr', 'Europe/Berlin': 'de', 'Europe/Madrid': 'es', 'Europe/Rome': 'it',
-      'Europe/Lisbon': 'pt', 'Europe/Amsterdam': 'nl', 'Europe/Warsaw': 'pl', 'Europe/Moscow': 'ru',
-      'Europe/Stockholm': 'sv', 'Europe/Oslo': 'no', 'Europe/Copenhagen': 'da',
-      'Europe/Helsinki': 'fi', 'Europe/Athens': 'el', 'Europe/Bucharest': 'ro',
-      'America/Mexico_City': 'es', 'America/Sao_Paulo': 'pt', 'Africa/Cairo': 'ar',
-      'Africa/Nairobi': 'sw', 'Africa/Addis_Ababa': 'am'
-    };
 
     const languageDisplayNames = {
       ta: { english: 'Tamil', native: 'தமிழ்' },
@@ -1734,20 +1842,6 @@
 
     function supported(code) { return [...select.options].some(o => o.value === code) }
 
-    function getLanguageInfo(code) {
-      if (languageDisplayNames[code]) {
-        const item = languageDisplayNames[code];
-        return {
-          fullName: `${item.english} (${item.native})`,
-          shortName: item.native || item.english,
-          englishName: item.english
-        };
-      }
-      const opt = select.querySelector(`option[value="${code}"]`);
-      const text = opt ? opt.textContent : code;
-      return { fullName: text, shortName: text, englishName: text };
-    }
-
     function clearGoogleTransCookie() {
       try {
         const host = window.location.hostname;
@@ -1773,142 +1867,16 @@
       return true;
     }
 
-    const promptEl = document.getElementById('langPrompt');
-    const promptTarget = document.getElementById('langPromptTarget');
-    const switchBtn = document.getElementById('langPromptSwitchBtn');
-    const keepBtn = document.getElementById('langPromptKeepBtn');
-    const closeBtn = document.getElementById('langPromptCloseBtn');
-
-    function showLanguageConfirmation(detectedLang) {
-      if (!supported(detectedLang) || detectedLang === 'en') return;
-      if (sessionStorage.getItem(DISMISSED_KEY)) return;
-
-      const info = getLanguageInfo(detectedLang);
-      if (promptTarget) promptTarget.textContent = info.fullName;
-      if (switchBtn) switchBtn.textContent = `Switch to ${info.fullName}`;
-      if (promptEl) {
-        promptEl.dataset.pendingLang = detectedLang;
-        promptEl.classList.add('active');
-      }
-    }
-
-    function hideLanguageConfirmation() {
-      if (promptEl) promptEl.classList.remove('active');
-    }
-
-    if (switchBtn) {
-      switchBtn.addEventListener('click', () => {
-        const target = promptEl ? promptEl.dataset.pendingLang : '';
-        hideLanguageConfirmation();
-        if (target && supported(target)) {
-          select.value = target;
-          applyLanguage(target);
-        }
-      });
-    }
-
-    if (keepBtn) {
-      keepBtn.addEventListener('click', () => {
-        hideLanguageConfirmation();
-        select.value = 'en';
-        localStorage.setItem(STORAGE_KEY, 'en');
-        clearGoogleTransCookie();
-        setGoogleLanguage('en');
-      });
-    }
-
-    if (closeBtn) {
-      closeBtn.addEventListener('click', () => {
-        sessionStorage.setItem(DISMISSED_KEY, '1');
-        hideLanguageConfirmation();
-      });
-    }
-
-    /* Automatic regional detection.
-       Browser language is preferred when explicitly non-English.
-       Otherwise an approximate IP region is used so visitors (e.g. Tamil Nadu)
-       can be detected for regional languages even when their browser is English.
-    */
-    async function detectLocationLanguage() {
-      if (supported(browserLang) && browserLang !== 'en') return browserLang;
-
-      try {
-        const r = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
-        if (r.ok) {
-          const g = await r.json();
-          if (!g.error) {
-            const country = (g.country_code || '').toUpperCase();
-            const region = (g.region || '').toLowerCase();
-
-            if (country === 'IN') {
-              if (/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
-              if (/kerala/.test(region)) return 'ml';
-              if (/karnataka/.test(region)) return 'kn';
-              if (/andhra|telangana/.test(region)) return 'te';
-              if (/west bengal/.test(region)) return 'bn';
-              if (/maharashtra/.test(region)) return 'mr';
-              if (/gujarat/.test(region)) return 'gu';
-              if (/punjab/.test(region)) return 'pa';
-            }
-          }
-        }
-      } catch (e) { }
-
-      try {
-        const r2 = await fetch('https://ipwho.is/', { cache: 'no-store' });
-        if (r2.ok) {
-          const g2 = await r2.json();
-          if (g2.success) {
-            const country = (g2.country_code || '').toUpperCase();
-            const region = (g2.region || '').toLowerCase();
-
-            if (country === 'IN') {
-              if (/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
-              if (/kerala/.test(region)) return 'ml';
-              if (/karnataka/.test(region)) return 'kn';
-              if (/andhra|telangana/.test(region)) return 'te';
-              if (/west bengal/.test(region)) return 'bn';
-              if (/maharashtra/.test(region)) return 'mr';
-              if (/gujarat/.test(region)) return 'gu';
-              if (/punjab/.test(region)) return 'pa';
-            }
-          }
-        }
-      } catch (e) { }
-
-      return timezoneMap[timezone] && supported(timezoneMap[timezone])
-        ? timezoneMap[timezone]
-        : (supported(browserLang) ? browserLang : 'en');
-    }
-
+    /* Manual language switching only. No IP lookups, no geolocation, no
+       auto-detect popup — the visitor's own choice is the only signal used,
+       and it's remembered locally for their next visit. */
     function applyLanguage(lang) {
-      if (lang === 'auto') {
-        localStorage.removeItem(STORAGE_KEY);
-        sessionStorage.removeItem(DISMISSED_KEY);
-        select.disabled = true;
-        detectLocationLanguage().then(detected => {
-          select.disabled = false;
-          if (detected && detected !== 'en' && supported(detected)) {
-            select.value = 'en';
-            showLanguageConfirmation(detected);
-          } else {
-            select.value = 'en';
-            localStorage.setItem(STORAGE_KEY, 'en');
-            clearGoogleTransCookie();
-            setGoogleLanguage('en');
-          }
-        });
-        return;
-      }
       localStorage.setItem(STORAGE_KEY, lang);
       try { document.cookie = 'googtrans=/en/' + lang + ';path=/'; } catch (e) { }
       setGoogleLanguage(lang);
     }
 
-    select.addEventListener('change', () => {
-      hideLanguageConfirmation();
-      applyLanguage(select.value);
-    });
+    select.addEventListener('change', () => applyLanguage(select.value));
 
     window.googleTranslateElementInit = function () {
       new google.translate.TranslateElement({
@@ -1917,23 +1885,13 @@
         autoDisplay: false
       }, 'google_translate_element');
       const saved = localStorage.getItem(STORAGE_KEY);
-      if (saved && supported(saved)) {
+      if (saved && supported(saved) && saved !== 'en') {
         select.value = saved;
-        if (saved !== 'en') {
-          try { document.cookie = 'googtrans=/en/' + saved + ';path=/'; } catch (e) { }
-          setTimeout(() => setGoogleLanguage(saved), 700);
-        } else {
-          clearGoogleTransCookie();
-          setGoogleLanguage('en');
-        }
+        try { document.cookie = 'googtrans=/en/' + saved + ';path=/'; } catch (e) { }
+        setTimeout(() => setGoogleLanguage(saved), 700);
       } else {
         clearGoogleTransCookie();
         select.value = 'en';
-        detectLocationLanguage().then(detected => {
-          if (detected && detected !== 'en' && supported(detected)) {
-            showLanguageConfirmation(detected);
-          }
-        });
       }
     };
     const gt = document.createElement('script');
