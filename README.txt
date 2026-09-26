@@ -6,8 +6,9 @@ Automatic language selection:
 - Timezone fallback
 - English fallback
 
-For India, Tamil Nadu automatically selects Tamil, Kerala Malayalam,
+For India, Tamil Nadu suggests Tamil, Kerala Malayalam,
 Karnataka Kannada, Andhra Pradesh/Telangana Telugu, West Bengal Bengali,
 Maharashtra Marathi, Gujarat Gujarati, and Punjab Punjabi.
 
-The visitor can always override the detected language manually.
+Before switching automatically, visitors are prompted for confirmation to switch from English to the selected language.
+The visitor can always override or switch the language manually.

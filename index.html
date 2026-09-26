@@ -29,6 +29,21 @@ footer{padding:35px 0;border-top:1px solid #e5ece9}.footer{display:flex;justify-
 .reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
 @keyframes float{50%{transform:rotate(-2deg) translateY(-12px)}}@keyframes float2{50%{transform:perspective(900px) rotateY(-2deg) translateY(-10px)}}@keyframes arrow{50%{transform:translateX(12px)}}@keyframes pulse{50%{box-shadow:0 0 0 9px #16a67320}}@keyframes orb{to{transform:rotate(360deg)}}
 @media(max-width:850px){nav .links{display:none}.hero{padding-top:30px}.visual{grid-template-columns:1fr;max-width:620px}.arrow{transform:rotate(90deg);margin:-8px 0}.dashboard{order:1}.excel{order:0}.phone{order:2;width:150px;justify-self:center}.cards,.steps,.impact-grid{grid-template-columns:1fr}.steps{gap:12px}.step:after{display:none}.case{padding:30px}.case-title{font-size:34px}.section-head{display:block}.section-head p{margin-top:20px}.metrics{grid-template-columns:repeat(2,1fr)}.footer{gap:20px;align-items:flex-start;flex-direction:column}h1{letter-spacing:-3px}}
+.lang-prompt{position:fixed;bottom:24px;right:24px;z-index:99999;max-width:400px;width:calc(100vw - 40px);background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(22,166,115,.28);border-radius:20px;padding:20px 22px;box-shadow:0 22px 50px rgba(7,27,58,.18),0 2px 10px rgba(22,166,115,.1);transform:translateY(120%);opacity:0;transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .3s ease;pointer-events:none}
+.lang-prompt.active{transform:translateY(0);opacity:1;pointer-events:auto}
+.lang-prompt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
+.lang-prompt-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--green)}
+.lang-prompt-close{background:transparent;border:0;outline:0;font-size:18px;line-height:1;color:#8a99ad;cursor:pointer;padding:4px;border-radius:6px;transition:.2s}
+.lang-prompt-close:hover{color:var(--navy);transform:scale(1.15)}
+.lang-prompt-text{font-size:14px;line-height:1.55;color:var(--ink);margin:0 0 16px}
+.lang-prompt-text strong{color:var(--navy);font-weight:800}
+.lang-prompt-actions{display:flex;gap:10px;align-items:center}
+.lang-btn{flex:1;padding:12px 14px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;text-align:center;transition:all .2s ease;border:0;font-family:inherit}
+.lang-btn-primary{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(22,166,115,.28)}
+.lang-btn-primary:hover{background:#139265;transform:translateY(-1px);box-shadow:0 10px 24px rgba(22,166,115,.36)}
+.lang-btn-secondary{background:#f4f8f6;color:var(--navy);border:1px solid var(--line)}
+.lang-btn-secondary:hover{background:#e7f2ed}
+@media(max-width:600px){.lang-prompt{bottom:16px;right:16px;left:16px;width:auto;max-width:none}.lang-prompt-actions{flex-direction:column-reverse;gap:8px}.lang-btn{width:100%}}
 </style>
 </head>
 <body>
@@ -97,12 +112,26 @@ footer{padding:35px 0;border-top:1px solid #e5ece9}.footer{display:flex;justify-
 
 <footer><div class="container footer"><div class="logo">Saarigai<span class="leaf">◆</span></div><div>BUSINESS SOFTWARE FOR A BRIGHTER TOMORROW</div><div>www.saarigai.com · 🌐 100+ languages</div></div></footer>
 
+<aside class="lang-prompt notranslate" id="langPrompt" role="dialog" aria-labelledby="langPromptTitle" aria-live="polite">
+  <div class="lang-prompt-head">
+    <div class="lang-prompt-kicker" id="langPromptTitle"><span class="dot"></span> Language Preference</div>
+    <button type="button" class="lang-prompt-close" id="langPromptCloseBtn" aria-label="Close language confirmation">✕</button>
+  </div>
+  <p class="lang-prompt-text">Would you like to switch from English to <strong id="langPromptTarget">Tamil (தமிழ்)</strong>?</p>
+  <div class="lang-prompt-actions">
+    <button type="button" class="lang-btn lang-btn-primary" id="langPromptSwitchBtn">Switch to Tamil (தமிழ்)</button>
+    <button type="button" class="lang-btn lang-btn-secondary" id="langPromptKeepBtn">Stay in English</button>
+  </div>
+</aside>
+
 <script>
 const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
 document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
 
 const select=document.getElementById('languageSelect');
 const STORAGE_KEY='saarigai-language';
+const DISMISSED_KEY='saarigai-lang-dismissed';
+
 function normalizeLang(v){
   if(!v)return'en';
   const x=v.toLowerCase();
@@ -111,7 +140,10 @@ function normalizeLang(v){
   return x.split('-')[0];
 }
 const browserLang=normalizeLang(navigator.language||'en');
-const timezone=navigator.timeZone||'';
+const timezone=(typeof Intl!=='undefined' && Intl.DateTimeFormat)
+  ? Intl.DateTimeFormat().resolvedOptions().timeZone
+  : (navigator.timeZone||'');
+
 const timezoneMap={
  'Asia/Colombo':'ta','Asia/Dhaka':'bn','Asia/Kathmandu':'ne','Asia/Karachi':'ur',
  'Asia/Dubai':'ar','Asia/Riyadh':'ar','Asia/Jerusalem':'he','Asia/Tehran':'fa',
@@ -124,17 +156,138 @@ const timezoneMap={
  'America/Mexico_City':'es','America/Sao_Paulo':'pt','Africa/Cairo':'ar',
  'Africa/Nairobi':'sw','Africa/Addis_Ababa':'am'
 };
+
+const languageDisplayNames={
+ ta:{english:'Tamil',native:'தமிழ்'},
+ hi:{english:'Hindi',native:'हिन्दी'},
+ ml:{english:'Malayalam',native:'മലയാളം'},
+ te:{english:'Telugu',native:'తెలుగు'},
+ kn:{english:'Kannada',native:'ಕನ್ನಡ'},
+ bn:{english:'Bengali',native:'বাংলা'},
+ mr:{english:'Marathi',native:'मराठी'},
+ gu:{english:'Gujarati',native:'ગુજરાતી'},
+ pa:{english:'Punjabi',native:'ਪੰਜਾਬੀ'},
+ ur:{english:'Urdu',native:'اردو'},
+ ar:{english:'Arabic',native:'العربية'},
+ es:{english:'Spanish',native:'Español'},
+ fr:{english:'French',native:'Français'},
+ de:{english:'German',native:'Deutsch'},
+ pt:{english:'Portuguese',native:'Português'},
+ it:{english:'Italian',native:'Italiano'},
+ nl:{english:'Dutch',native:'Nederlands'},
+ ru:{english:'Russian',native:'Русский'},
+ uk:{english:'Ukrainian',native:'Українська'},
+ tr:{english:'Turkish',native:'Türkçe'},
+ fa:{english:'Persian',native:'فارسی'},
+ he:{english:'Hebrew',native:'עברית'},
+ id:{english:'Indonesian',native:'Bahasa Indonesia'},
+ ms:{english:'Malay',native:'Bahasa Melayu'},
+ th:{english:'Thai',native:'ไทย'},
+ vi:{english:'Vietnamese',native:'Tiếng Việt'},
+ 'zh-CN':{english:'Simplified Chinese',native:'简体中文'},
+ 'zh-TW':{english:'Traditional Chinese',native:'繁體中文'},
+ ja:{english:'Japanese',native:'日本語'},
+ ko:{english:'Korean',native:'한국어'},
+ sw:{english:'Swahili',native:'Kiswahili'},
+ ne:{english:'Nepali',native:'नेपाली'}
+};
+
 function supported(code){return [...select.options].some(o=>o.value===code)}
-function setGoogleLanguage(lang){
+
+function getLanguageInfo(code){
+  if(languageDisplayNames[code]){
+    const item=languageDisplayNames[code];
+    return {
+      fullName:`${item.english} (${item.native})`,
+      shortName:item.native||item.english,
+      englishName:item.english
+    };
+  }
+  const opt=select.querySelector(`option[value="${code}"]`);
+  const text=opt?opt.textContent:code;
+  return {fullName:text,shortName:text,englishName:text};
+}
+
+function clearGoogleTransCookie(){
+  try{
+    const host=window.location.hostname;
+    document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+    document.cookie='googtrans=/en/en; path=/;';
+    if(host){
+      document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain='+host+';';
+      document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.'+host+';';
+    }
+  }catch(e){}
+}
+
+function setGoogleLanguage(lang, attempts=0){
  const combo=document.querySelector('.goog-te-combo');
- if(!combo)return false;
- combo.value=lang; combo.dispatchEvent(new Event('change')); return true;
+ if(!combo){
+   if(attempts<10) setTimeout(()=>setGoogleLanguage(lang,attempts+1),300);
+   return false;
+ }
+ if(combo.value!==lang){
+   combo.value=lang;
+   combo.dispatchEvent(new Event('change'));
+ }
+ return true;
+}
+
+const promptEl=document.getElementById('langPrompt');
+const promptTarget=document.getElementById('langPromptTarget');
+const switchBtn=document.getElementById('langPromptSwitchBtn');
+const keepBtn=document.getElementById('langPromptKeepBtn');
+const closeBtn=document.getElementById('langPromptCloseBtn');
+
+function showLanguageConfirmation(detectedLang){
+  if(!supported(detectedLang) || detectedLang==='en') return;
+  if(sessionStorage.getItem(DISMISSED_KEY)) return;
+
+  const info=getLanguageInfo(detectedLang);
+  if(promptTarget) promptTarget.textContent=info.fullName;
+  if(switchBtn) switchBtn.textContent=`Switch to ${info.fullName}`;
+  if(promptEl){
+    promptEl.dataset.pendingLang=detectedLang;
+    promptEl.classList.add('active');
+  }
+}
+
+function hideLanguageConfirmation(){
+  if(promptEl) promptEl.classList.remove('active');
+}
+
+if(switchBtn){
+  switchBtn.addEventListener('click',()=>{
+    const target=promptEl?promptEl.dataset.pendingLang:'';
+    hideLanguageConfirmation();
+    if(target && supported(target)){
+      select.value=target;
+      applyLanguage(target);
+    }
+  });
+}
+
+if(keepBtn){
+  keepBtn.addEventListener('click',()=>{
+    hideLanguageConfirmation();
+    select.value='en';
+    localStorage.setItem(STORAGE_KEY,'en');
+    clearGoogleTransCookie();
+    setGoogleLanguage('en');
+  });
+}
+
+if(closeBtn){
+  closeBtn.addEventListener('click',()=>{
+    sessionStorage.setItem(DISMISSED_KEY,'1');
+    hideLanguageConfirmation();
+  });
 }
 
 /* Automatic regional detection.
    Browser language is preferred when explicitly non-English.
-   Otherwise an approximate IP region is used so Tamil Nadu visitors
-   can be automatically shown Tamil even when their browser is English.
+   Otherwise an approximate IP region is used so visitors (e.g. Tamil Nadu)
+   can be detected for regional languages even when their browser is English.
 */
 async function detectLocationLanguage(){
  if(supported(browserLang) && browserLang!=='en') return browserLang;
@@ -143,18 +296,42 @@ async function detectLocationLanguage(){
    const r=await fetch('https://ipapi.co/json/',{cache:'no-store'});
    if(r.ok){
      const g=await r.json();
-     const country=(g.country_code||'').toUpperCase();
-     const region=(g.region||'').toLowerCase();
+     if(!g.error){
+       const country=(g.country_code||'').toUpperCase();
+       const region=(g.region||'').toLowerCase();
 
-     if(country==='IN'){
-       if(/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
-       if(/kerala/.test(region)) return 'ml';
-       if(/karnataka/.test(region)) return 'kn';
-       if(/andhra|telangana/.test(region)) return 'te';
-       if(/west bengal/.test(region)) return 'bn';
-       if(/maharashtra/.test(region)) return 'mr';
-       if(/gujarat/.test(region)) return 'gu';
-       if(/punjab/.test(region)) return 'pa';
+       if(country==='IN'){
+         if(/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
+         if(/kerala/.test(region)) return 'ml';
+         if(/karnataka/.test(region)) return 'kn';
+         if(/andhra|telangana/.test(region)) return 'te';
+         if(/west bengal/.test(region)) return 'bn';
+         if(/maharashtra/.test(region)) return 'mr';
+         if(/gujarat/.test(region)) return 'gu';
+         if(/punjab/.test(region)) return 'pa';
+       }
+     }
+   }
+ }catch(e){}
+
+ try{
+   const r2=await fetch('https://ipwho.is/',{cache:'no-store'});
+   if(r2.ok){
+     const g2=await r2.json();
+     if(g2.success){
+       const country=(g2.country_code||'').toUpperCase();
+       const region=(g2.region||'').toLowerCase();
+
+       if(country==='IN'){
+         if(/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
+         if(/kerala/.test(region)) return 'ml';
+         if(/karnataka/.test(region)) return 'kn';
+         if(/andhra|telangana/.test(region)) return 'te';
+         if(/west bengal/.test(region)) return 'bn';
+         if(/maharashtra/.test(region)) return 'mr';
+         if(/gujarat/.test(region)) return 'gu';
+         if(/punjab/.test(region)) return 'pa';
+       }
      }
    }
  }catch(e){}
@@ -167,21 +344,31 @@ async function detectLocationLanguage(){
 function applyLanguage(lang){
  if(lang==='auto'){
    localStorage.removeItem(STORAGE_KEY);
+   sessionStorage.removeItem(DISMISSED_KEY);
    select.disabled=true;
    detectLocationLanguage().then(detected=>{
-     select.value=detected;
-     try{document.cookie='googtrans=/en/'+detected+';path=/';}catch(e){}
-     if(!setGoogleLanguage(detected)) setTimeout(()=>setGoogleLanguage(detected),1200);
      select.disabled=false;
+     if(detected && detected!=='en' && supported(detected)){
+       select.value='en';
+       showLanguageConfirmation(detected);
+     }else{
+       select.value='en';
+       localStorage.setItem(STORAGE_KEY,'en');
+       clearGoogleTransCookie();
+       setGoogleLanguage('en');
+     }
    });
    return;
  }
  localStorage.setItem(STORAGE_KEY,lang);
  try{document.cookie='googtrans=/en/'+lang+';path=/';}catch(e){}
- if(!setGoogleLanguage(lang)) setTimeout(()=>setGoogleLanguage(lang),1000);
+ setGoogleLanguage(lang);
 }
 
-select.addEventListener('change',()=>applyLanguage(select.value));
+select.addEventListener('change',()=>{
+  hideLanguageConfirmation();
+  applyLanguage(select.value);
+});
 
 window.googleTranslateElementInit=function(){
   new google.translate.TranslateElement({
@@ -192,14 +379,20 @@ window.googleTranslateElementInit=function(){
   const saved=localStorage.getItem(STORAGE_KEY);
   if(saved && supported(saved)){
     select.value=saved;
-    setTimeout(()=>setGoogleLanguage(saved),700);
+    if(saved!=='en'){
+      try{document.cookie='googtrans=/en/'+saved+';path=/';}catch(e){}
+      setTimeout(()=>setGoogleLanguage(saved),700);
+    }else{
+      clearGoogleTransCookie();
+      setGoogleLanguage('en');
+    }
   }else{
-    select.value='auto';
-    select.disabled=true;
-    detectLocationLanguage().then(lang=>{
-      select.value=lang;
-      setTimeout(()=>setGoogleLanguage(lang),500);
-      select.disabled=false;
+    clearGoogleTransCookie();
+    select.value='en';
+    detectLocationLanguage().then(detected=>{
+      if(detected && detected!=='en' && supported(detected)){
+        showLanguageConfirmation(detected);
+      }
     });
   }
 };
