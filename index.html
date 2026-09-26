@@ -1,405 +1,1946 @@
 <!doctype html>
 <html lang="en">
+
 <head>
-<meta charset="utf-8">
-<meta name="viewport" content="width=device-width,initial-scale=1">
-<title>Saarigai — Excel to Software</title>
-<meta name="description" content="Saarigai turns Excel businesses into custom software businesses. Romana case study: from spreadsheets to a custom business system for $500.">
-<style>
-:root{--navy:#071b3a;--navy2:#0b2b4f;--green:#16a673;--mint:#dff8ef;--cyan:#48d8c0;--ink:#0c1f3e;--muted:#607089;--white:#fff;--line:#dbe8e4}
-*{box-sizing:border-box}html{scroll-behavior:smooth}body{margin:0;font-family:Inter,ui-sans-serif,system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",sans-serif;color:var(--ink);background:#fff;overflow-x:hidden}
-a{text-decoration:none;color:inherit}.container{width:min(1180px,92vw);margin:auto}
-
-.nav-actions{display:flex;align-items:center;gap:12px}.language-wrap{display:flex;align-items:center;gap:6px;border:1px solid var(--line);background:#fff;border-radius:999px;padding:5px 10px;box-shadow:0 6px 20px #0b2b4f0a}.language-wrap select{border:0;outline:0;background:transparent;color:#31435c;font-weight:700;font-size:13px;max-width:135px;cursor:pointer}.goog-te-banner-frame,.skiptranslate iframe,.goog-logo-link,.goog-te-gadget{display:none!important}body{top:0!important}#google_translate_element{height:0;overflow:hidden}
-@media(max-width:850px){.nav-actions .cta{display:none}.language-wrap select{max-width:105px}}
-
-nav{height:78px;display:flex;align-items:center;justify-content:space-between;position:relative;z-index:5}.logo{font-size:34px;font-weight:900;letter-spacing:-2px;color:var(--navy)}.leaf{color:var(--green)}nav .links{display:flex;gap:28px;font-size:14px;font-weight:700;color:#53637a}nav .cta{padding:12px 20px;background:var(--navy);color:#fff;border-radius:999px}
-.hero{min-height:760px;position:relative;padding:55px 0 100px;display:flex;align-items:center;background:radial-gradient(circle at 75% 35%,#dffaf2 0,transparent 35%),linear-gradient(#fff,#f8fffc)}
-.kicker{display:inline-flex;gap:10px;align-items:center;color:var(--green);font-weight:900;letter-spacing:2px;font-size:12px;text-transform:uppercase}.dot{width:8px;height:8px;background:var(--green);border-radius:50%;animation:pulse 1.7s infinite}
-h1{font-size:clamp(50px,7vw,94px);line-height:.95;letter-spacing:-5px;max-width:920px;margin:20px 0}.gradient{color:var(--green)}.sub{font-size:21px;color:var(--muted);max-width:680px;line-height:1.6}.hero-buttons{display:flex;gap:14px;margin-top:30px;flex-wrap:wrap}.btn{padding:16px 24px;border-radius:12px;font-weight:800}.primary{background:var(--green);color:#fff;box-shadow:0 12px 35px #16a67333}.secondary{border:1px solid var(--line);background:#fff}
-.visual{margin:70px auto 0;display:grid;grid-template-columns:230px 1fr 150px;gap:25px;align-items:end;max-width:1000px}.excel{height:220px;position:relative;transform:rotate(-4deg);animation:float 5s ease-in-out infinite}.sheet{height:100%;border-radius:15px;background:#fff;border:1px solid #d9e5e1;box-shadow:0 25px 60px #0b2b4f1f;overflow:hidden}.sheet-top{height:35px;background:#20a464}.rows{padding:14px}.row{height:16px;border-bottom:1px solid #e5eee9;display:grid;grid-template-columns:1fr .7fr .5fr;gap:7px}.row i{background:#edf4f1;margin:3px 0;border-radius:3px}.excel-badge{position:absolute;right:-15px;bottom:-12px;background:#168b52;color:#fff;width:62px;height:62px;border-radius:14px;display:grid;place-items:center;font-size:30px;font-weight:900;box-shadow:0 15px 30px #168b5244}
-.arrow{font-size:55px;color:var(--green);text-align:center;animation:arrow 1.5s ease-in-out infinite}
-.dashboard{background:#fff;border-radius:20px;border:1px solid #dce9e5;box-shadow:0 30px 80px #09203b22;padding:20px;transform:perspective(900px) rotateY(-5deg);animation:float2 6s ease-in-out infinite}.dash-head{display:flex;justify-content:space-between;align-items:center;font-weight:900}.brand{color:#176b9d}.metrics{display:grid;grid-template-columns:repeat(4,1fr);gap:10px;margin:18px 0}.metric{background:#f5faf8;border-radius:10px;padding:12px}.metric small{display:block;color:#728096}.metric b{font-size:19px}.chart{height:125px;border-radius:12px;background:linear-gradient(180deg,#f4fbf8,#fff);position:relative;overflow:hidden}.chart svg{width:100%;height:100%}.phone{height:250px;border:7px solid #102641;border-radius:30px;background:#fff;padding:14px;box-shadow:0 25px 50px #0b2b4f24;animation:float 4.5s ease-in-out infinite}.phone-top{font-weight:900;margin-bottom:18px}.pitem{padding:11px 7px;border-bottom:1px solid #e5ecea;font-size:12px}
-section{padding:105px 0}.section-head{display:flex;justify-content:space-between;gap:40px;align-items:end;margin-bottom:50px}.eyebrow{color:var(--green);font-size:12px;font-weight:900;letter-spacing:2px;text-transform:uppercase}.section-head h2{font-size:clamp(38px,5vw,65px);letter-spacing:-3px;line-height:1;margin:12px 0 0}.section-head p{max-width:460px;color:var(--muted);line-height:1.7}
-.case{background:linear-gradient(135deg,#edfff8,#d8f6ec);border-radius:35px;padding:55px;overflow:hidden;position:relative}.case:before{content:"";position:absolute;width:450px;height:450px;border-radius:50%;background:#fff7;right:-180px;top:-220px}.case-title{font-size:42px;letter-spacing:-2px;max-width:800px;position:relative}.route{display:flex;align-items:center;gap:18px;margin:18px 0 42px;font-weight:800}.route span{background:#fff;padding:10px 15px;border-radius:12px;box-shadow:0 8px 25px #0b2b4f10}.cards{display:grid;grid-template-columns:repeat(3,1fr);gap:18px}.card{background:#fff;border:1px solid #e0ebe7;border-radius:22px;padding:28px;min-height:330px;transition:.4s}.card:hover{transform:translateY(-10px);box-shadow:0 25px 50px #0b2b4f15}.num{width:42px;height:42px;border-radius:50%;display:grid;place-items:center;background:#dff8ef;color:var(--green);font-weight:900}.card h3{font-size:23px}.card p,.card li{color:#607089;line-height:1.65}.card ul{padding-left:20px}
-.price{font-size:58px;font-weight:950;color:var(--green);letter-spacing:-3px}.quote{background:#e9faf4;padding:20px;border-radius:15px;margin-top:20px;font-style:italic}
-.impact{background:var(--navy);color:#fff;position:relative;overflow:hidden}.impact:before,.impact:after{content:"";position:absolute;border-radius:50%;border:1px solid #5ce0c044;animation:orb 8s linear infinite}.impact:before{width:420px;height:420px;right:-130px;top:-180px}.impact:after{width:250px;height:250px;left:-120px;bottom:-130px}.impact-grid{display:grid;grid-template-columns:1fr 1fr;gap:60px;align-items:center}.impact h2{font-size:clamp(45px,6vw,78px);line-height:.95;letter-spacing:-4px;margin:12px 0}.impact p{color:#b9c9d8;font-size:18px;line-height:1.7}.features{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}.feature{padding:24px;border:1px solid #ffffff20;border-radius:18px;background:#ffffff09}.feature b{display:block;margin-bottom:8px}.feature span{color:#a9bacb}.impact .btn{display:inline-block;margin-top:25px;background:#58e0c1;color:#06243a}
-.process{background:#f8fcfb}.steps{display:grid;grid-template-columns:repeat(4,1fr);gap:15px}.step{background:#fff;border:1px solid var(--line);border-radius:20px;padding:25px;position:relative}.step:after{content:"→";position:absolute;right:-15px;top:35px;color:var(--green);font-size:25px}.step:last-child:after{display:none}.step strong{font-size:35px;color:var(--green)}
-footer{padding:35px 0;border-top:1px solid #e5ece9}.footer{display:flex;justify-content:space-between;align-items:center;color:#6a788b;font-size:13px}.footer .logo{font-size:27px}
-.reveal{opacity:0;transform:translateY(35px);transition:opacity .8s ease,transform .8s ease}.reveal.show{opacity:1;transform:none}
-@keyframes float{50%{transform:rotate(-2deg) translateY(-12px)}}@keyframes float2{50%{transform:perspective(900px) rotateY(-2deg) translateY(-10px)}}@keyframes arrow{50%{transform:translateX(12px)}}@keyframes pulse{50%{box-shadow:0 0 0 9px #16a67320}}@keyframes orb{to{transform:rotate(360deg)}}
-@media(max-width:850px){nav .links{display:none}.hero{padding-top:30px}.visual{grid-template-columns:1fr;max-width:620px}.arrow{transform:rotate(90deg);margin:-8px 0}.dashboard{order:1}.excel{order:0}.phone{order:2;width:150px;justify-self:center}.cards,.steps,.impact-grid{grid-template-columns:1fr}.steps{gap:12px}.step:after{display:none}.case{padding:30px}.case-title{font-size:34px}.section-head{display:block}.section-head p{margin-top:20px}.metrics{grid-template-columns:repeat(2,1fr)}.footer{gap:20px;align-items:flex-start;flex-direction:column}h1{letter-spacing:-3px}}
-.lang-prompt{position:fixed;bottom:24px;right:24px;z-index:99999;max-width:400px;width:calc(100vw - 40px);background:rgba(255,255,255,.96);backdrop-filter:blur(18px);-webkit-backdrop-filter:blur(18px);border:1px solid rgba(22,166,115,.28);border-radius:20px;padding:20px 22px;box-shadow:0 22px 50px rgba(7,27,58,.18),0 2px 10px rgba(22,166,115,.1);transform:translateY(120%);opacity:0;transition:transform .4s cubic-bezier(.16,1,.3,1),opacity .3s ease;pointer-events:none}
-.lang-prompt.active{transform:translateY(0);opacity:1;pointer-events:auto}
-.lang-prompt-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:12px}
-.lang-prompt-kicker{display:inline-flex;align-items:center;gap:8px;font-size:11px;font-weight:900;letter-spacing:1.5px;text-transform:uppercase;color:var(--green)}
-.lang-prompt-close{background:transparent;border:0;outline:0;font-size:18px;line-height:1;color:#8a99ad;cursor:pointer;padding:4px;border-radius:6px;transition:.2s}
-.lang-prompt-close:hover{color:var(--navy);transform:scale(1.15)}
-.lang-prompt-text{font-size:14px;line-height:1.55;color:var(--ink);margin:0 0 16px}
-.lang-prompt-text strong{color:var(--navy);font-weight:800}
-.lang-prompt-actions{display:flex;gap:10px;align-items:center}
-.lang-btn{flex:1;padding:12px 14px;border-radius:12px;font-size:13px;font-weight:800;cursor:pointer;text-align:center;transition:all .2s ease;border:0;font-family:inherit}
-.lang-btn-primary{background:var(--green);color:#fff;box-shadow:0 8px 20px rgba(22,166,115,.28)}
-.lang-btn-primary:hover{background:#139265;transform:translateY(-1px);box-shadow:0 10px 24px rgba(22,166,115,.36)}
-.lang-btn-secondary{background:#f4f8f6;color:var(--navy);border:1px solid var(--line)}
-.lang-btn-secondary:hover{background:#e7f2ed}
-@media(max-width:600px){.lang-prompt{bottom:16px;right:16px;left:16px;width:auto;max-width:none}.lang-prompt-actions{flex-direction:column-reverse;gap:8px}.lang-btn{width:100%}}
-</style>
-</head>
-<body>
-<nav class="container">
-  <a class="logo" href="#">Saarigai<span class="leaf">◆</span></a>
-  <div class="links"><a href="#case">Case Study</a><a href="#process">How We Build</a><a href="#impact">Why Saarigai</a></div>
-  <div class="nav-actions">
-    <div class="language-wrap"><span>🌐</span><select id="languageSelect" aria-label="Select language">
-      <option value="auto">Auto detect</option><option value="en">English</option><option value="ta">தமிழ்</option><option value="hi">हिन्दी</option><option value="ml">മലയാളം</option><option value="te">తెలుగు</option><option value="kn">ಕನ್ನಡ</option><option value="bn">বাংলা</option><option value="mr">मराठी</option><option value="gu">ગુજરાતી</option><option value="pa">ਪੰਜਾਬੀ</option><option value="ur">اردو</option><option value="ar">العربية</option><option value="es">Español</option><option value="fr">Français</option><option value="de">Deutsch</option><option value="pt">Português</option><option value="it">Italiano</option><option value="nl">Nederlands</option><option value="ru">Русский</option><option value="uk">Українська</option><option value="tr">Türkçe</option><option value="fa">فارسی</option><option value="he">עברית</option><option value="id">Bahasa Indonesia</option><option value="ms">Bahasa Melayu</option><option value="th">ไทย</option><option value="vi">Tiếng Việt</option><option value="zh-CN">简体中文</option><option value="zh-TW">繁體中文</option><option value="ja">日本語</option><option value="ko">한국어</option><option value="sw">Kiswahili</option><option value="am">አማርኛ</option><option value="af">Afrikaans</option><option value="sq">Shqip</option><option value="hy">Հայերեն</option><option value="az">Azərbaycan</option><option value="eu">Euskara</option><option value="be">Беларуская</option><option value="bs">Bosanski</option><option value="bg">Български</option><option value="ca">Català</option><option value="hr">Hrvatski</option><option value="cs">Čeština</option><option value="da">Dansk</option><option value="et">Eesti</option><option value="fi">Suomi</option><option value="ka">ქართული</option><option value="el">Ελληνικά</option><option value="hu">Magyar</option><option value="is">Íslenska</option><option value="ga">Gaeilge</option><option value="lv">Latviešu</option><option value="lt">Lietuvių</option><option value="mk">Македонски</option><option value="no">Norsk</option><option value="pl">Polski</option><option value="ro">Română</option><option value="sk">Slovenčina</option><option value="sl">Slovenščina</option><option value="sr">Српски</option><option value="sv">Svenska</option><option value="cy">Cymraeg</option><option value="zu">isiZulu</option>
-    </select></div>
-    <a class="cta" href="#contact">Let's build yours →</a>
-  </div>
-</nav>
-<div id="google_translate_element" aria-hidden="true"></div>
-
-<header class="hero">
-<div class="container">
-  <div class="kicker"><span class="dot"></span> Ideas → Software → Impact</div>
-  <h1>We turn Excel businesses<br>into <span class="gradient">software businesses.</span></h1>
-  <p class="sub">Same business. Better tools. A brighter future. We use AI-assisted development to turn real-world workflows into affordable custom business software.</p>
-  <div class="hero-buttons"><a class="btn primary" href="#case">See the $500 case study ↓</a><a class="btn secondary" href="#contact">Talk to Saarigai</a></div>
-  <div class="visual reveal">
-    <div class="excel"><div class="sheet"><div class="sheet-top"></div><div class="rows">
-      <div class="row"><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i></div><div class="row"><i></i><i></i><i></i></div>
-    </div></div><div class="excel-badge">X</div></div>
-    <div class="arrow">→</div>
-    <div class="dashboard"><div class="dash-head"><span class="brand">Romana</span><span>☰</span></div><div class="metrics"><div class="metric"><small>Orders</small><b>248</b></div><div class="metric"><small>Customers</small><b>96</b></div><div class="metric"><small>Deliveries</small><b>42</b></div><div class="metric"><small>Revenue</small><b>₹48L</b></div></div><div class="chart"><svg viewBox="0 0 500 150" preserveAspectRatio="none"><polyline points="0,120 70,105 125,115 180,65 240,80 300,45 360,60 420,25 500,35" fill="none" stroke="#16a673" stroke-width="5"/></svg></div></div>
-    <div class="phone"><div class="phone-top">Romana</div><div class="pitem">🛒 Orders</div><div class="pitem">👤 Customers</div><div class="pitem">▦ Inventory</div><div class="pitem">🚚 Delivery</div><div class="pitem">▤ Reports</div></div>
-  </div>
-</div>
-</header>
-
-<section id="case" class="container reveal">
-  <div class="section-head"><div><div class="eyebrow">Case Study</div><h2>From Excel to a custom business system for $500.</h2></div><p>One acquisition. One spreadsheet-driven operation. One focused software build that made the business ready to run digitally from day one.</p></div>
-  <div class="case">
-    <div class="route"><span>Romana · Trivandrum</span><b>→</b><span>Kamal · Mumbai</span></div>
-    <div class="cards">
-      <article class="card"><div class="num">1</div><h3>The situation</h3><p>Kamal, based in Mumbai, acquired Romana, a Trivandrum-based company.</p><p>Romana was running its entire operation on Excel sheets, making it harder to track, scale, and hand over to a new owner.</p></article>
-      <article class="card"><div class="num">2</div><h3>What Saarigai did</h3><p>Using AI-assisted development, Saarigai built custom software around Romana's actual workflows.</p><ul><li>Mapped Excel workflows</li><li>Built custom screens and logic</li><li>Migrated operational data</li><li>Designed for real business needs</li><li>Delivered quickly using AI tools</li></ul></article>
-      <article class="card"><div class="num">3</div><h3>The result</h3><p>Kamal took over a business ready to run on software from day one.</p><div class="price">$500</div><div class="quote">“A business that was on spreadsheets is now on software — ready for the future.”</div></article>
-    </div>
-  </div>
-</section>
-
-<section id="process" class="process">
-<div class="container reveal"><div class="section-head"><div><div class="eyebrow">How We Build</div><h2>From messy workflow to clean software.</h2></div><p>We start with the way your business already works, then build the system around it.</p></div>
-<div class="steps">
-<div class="step"><strong>01</strong><h3>Understand</h3><p>We map your spreadsheets, people, processes and pain points.</p></div>
-<div class="step"><strong>02</strong><h3>Design</h3><p>We turn the workflow into simple screens, rules and dashboards.</p></div>
-<div class="step"><strong>03</strong><h3>Build</h3><p>AI-assisted development accelerates the custom implementation.</p></div>
-<div class="step"><strong>04</strong><h3>Launch</h3><p>We migrate data and give your team a system they can actually use.</p></div>
-</div></div>
-</section>
-
-<section id="impact" class="impact">
-<div class="container impact-grid reveal">
-<div><div class="eyebrow">Why Saarigai</div><h2>Custom software.<br>Real business impact.</h2><p>Your business doesn't need to change to fit generic software. Your software should fit your business.</p><a class="btn" href="#contact">Turn your Excel into software →</a></div>
-<div class="features"><div class="feature"><b>⚡ Fast</b><span>Build focused systems without traditional development overhead.</span></div><div class="feature"><b>◉ Affordable</b><span>Modern AI-assisted development can dramatically reduce build cost.</span></div><div class="feature"><b>⚙ Tailored</b><span>Designed around your actual workflows, not generic assumptions.</span></div><div class="feature"><b>↗ Built with AI</b><span>Use AI where it creates leverage while keeping business logic deliberate.</span></div></div>
-</div>
-</section>
-
-<section id="contact" class="container reveal">
-<div class="section-head"><div><div class="eyebrow">Ready?</div><h2>Your spreadsheets could be your next software system.</h2></div><p>Bring the workflow. Saarigai can help turn it into a focused digital system.</p></div>
-<div class="case" style="text-align:center"><div class="case-title" style="margin:auto">Let's build yours.</div><p class="sub" style="margin:20px auto">Custom business software for small businesses with big possibilities.</p><a class="btn primary" href="mailto:hello@saarigai.com">Start a conversation →</a></div>
-</section>
-
-<footer><div class="container footer"><div class="logo">Saarigai<span class="leaf">◆</span></div><div>BUSINESS SOFTWARE FOR A BRIGHTER TOMORROW</div><div>www.saarigai.com · 🌐 100+ languages</div></div></footer>
-
-<aside class="lang-prompt notranslate" id="langPrompt" role="dialog" aria-labelledby="langPromptTitle" aria-live="polite">
-  <div class="lang-prompt-head">
-    <div class="lang-prompt-kicker" id="langPromptTitle"><span class="dot"></span> Language Preference</div>
-    <button type="button" class="lang-prompt-close" id="langPromptCloseBtn" aria-label="Close language confirmation">✕</button>
-  </div>
-  <p class="lang-prompt-text">Would you like to switch from English to <strong id="langPromptTarget">Tamil (தமிழ்)</strong>?</p>
-  <div class="lang-prompt-actions">
-    <button type="button" class="lang-btn lang-btn-primary" id="langPromptSwitchBtn">Switch to Tamil (தமிழ்)</button>
-    <button type="button" class="lang-btn lang-btn-secondary" id="langPromptKeepBtn">Stay in English</button>
-  </div>
-</aside>
-
-<script>
-const observer=new IntersectionObserver(entries=>entries.forEach(e=>{if(e.isIntersecting)e.target.classList.add('show')}),{threshold:.12});
-document.querySelectorAll('.reveal').forEach(el=>observer.observe(el));
-
-const select=document.getElementById('languageSelect');
-const STORAGE_KEY='saarigai-language';
-const DISMISSED_KEY='saarigai-lang-dismissed';
-
-function normalizeLang(v){
-  if(!v)return'en';
-  const x=v.toLowerCase();
-  if(x.startsWith('zh-tw')||x.startsWith('zh-hk'))return'zh-TW';
-  if(x.startsWith('zh'))return'zh-CN';
-  return x.split('-')[0];
-}
-const browserLang=normalizeLang(navigator.language||'en');
-const timezone=(typeof Intl!=='undefined' && Intl.DateTimeFormat)
-  ? Intl.DateTimeFormat().resolvedOptions().timeZone
-  : (navigator.timeZone||'');
-
-const timezoneMap={
- 'Asia/Colombo':'ta','Asia/Dhaka':'bn','Asia/Kathmandu':'ne','Asia/Karachi':'ur',
- 'Asia/Dubai':'ar','Asia/Riyadh':'ar','Asia/Jerusalem':'he','Asia/Tehran':'fa',
- 'Asia/Tokyo':'ja','Asia/Seoul':'ko','Asia/Shanghai':'zh-CN','Asia/Hong_Kong':'zh-TW',
- 'Asia/Kuala_Lumpur':'ms','Asia/Bangkok':'th','Asia/Ho_Chi_Minh':'vi',
- 'Europe/Paris':'fr','Europe/Berlin':'de','Europe/Madrid':'es','Europe/Rome':'it',
- 'Europe/Lisbon':'pt','Europe/Amsterdam':'nl','Europe/Warsaw':'pl','Europe/Moscow':'ru',
- 'Europe/Stockholm':'sv','Europe/Oslo':'no','Europe/Copenhagen':'da',
- 'Europe/Helsinki':'fi','Europe/Athens':'el','Europe/Bucharest':'ro',
- 'America/Mexico_City':'es','America/Sao_Paulo':'pt','Africa/Cairo':'ar',
- 'Africa/Nairobi':'sw','Africa/Addis_Ababa':'am'
-};
-
-const languageDisplayNames={
- ta:{english:'Tamil',native:'தமிழ்'},
- hi:{english:'Hindi',native:'हिन्दी'},
- ml:{english:'Malayalam',native:'മലയാളം'},
- te:{english:'Telugu',native:'తెలుగు'},
- kn:{english:'Kannada',native:'ಕನ್ನಡ'},
- bn:{english:'Bengali',native:'বাংলা'},
- mr:{english:'Marathi',native:'मराठी'},
- gu:{english:'Gujarati',native:'ગુજરાતી'},
- pa:{english:'Punjabi',native:'ਪੰਜਾਬੀ'},
- ur:{english:'Urdu',native:'اردو'},
- ar:{english:'Arabic',native:'العربية'},
- es:{english:'Spanish',native:'Español'},
- fr:{english:'French',native:'Français'},
- de:{english:'German',native:'Deutsch'},
- pt:{english:'Portuguese',native:'Português'},
- it:{english:'Italian',native:'Italiano'},
- nl:{english:'Dutch',native:'Nederlands'},
- ru:{english:'Russian',native:'Русский'},
- uk:{english:'Ukrainian',native:'Українська'},
- tr:{english:'Turkish',native:'Türkçe'},
- fa:{english:'Persian',native:'فارسی'},
- he:{english:'Hebrew',native:'עברית'},
- id:{english:'Indonesian',native:'Bahasa Indonesia'},
- ms:{english:'Malay',native:'Bahasa Melayu'},
- th:{english:'Thai',native:'ไทย'},
- vi:{english:'Vietnamese',native:'Tiếng Việt'},
- 'zh-CN':{english:'Simplified Chinese',native:'简体中文'},
- 'zh-TW':{english:'Traditional Chinese',native:'繁體中文'},
- ja:{english:'Japanese',native:'日本語'},
- ko:{english:'Korean',native:'한국어'},
- sw:{english:'Swahili',native:'Kiswahili'},
- ne:{english:'Nepali',native:'नेपाली'}
-};
-
-function supported(code){return [...select.options].some(o=>o.value===code)}
-
-function getLanguageInfo(code){
-  if(languageDisplayNames[code]){
-    const item=languageDisplayNames[code];
-    return {
-      fullName:`${item.english} (${item.native})`,
-      shortName:item.native||item.english,
-      englishName:item.english
-    };
-  }
-  const opt=select.querySelector(`option[value="${code}"]`);
-  const text=opt?opt.textContent:code;
-  return {fullName:text,shortName:text,englishName:text};
-}
-
-function clearGoogleTransCookie(){
-  try{
-    const host=window.location.hostname;
-    document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
-    document.cookie='googtrans=/en/en; path=/;';
-    if(host){
-      document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain='+host+';';
-      document.cookie='googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.'+host+';';
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <title>Saarigai — Excel to Software</title>
+  <meta name="description"
+    content="Saarigai turns Excel businesses into custom software businesses. 2 proven case studies (Romana & JK Traders): from spreadsheet chaos to custom business systems that scaled operations, boosted profit margins, and restored control for $2,000.">
+  <style>
+    :root {
+      --navy: #071b3a;
+      --navy2: #0b2b4f;
+      --green: #16a673;
+      --mint: #dff8ef;
+      --cyan: #48d8c0;
+      --ink: #0c1f3e;
+      --muted: #607089;
+      --white: #fff;
+      --line: #dbe8e4
     }
-  }catch(e){}
-}
 
-function setGoogleLanguage(lang, attempts=0){
- const combo=document.querySelector('.goog-te-combo');
- if(!combo){
-   if(attempts<10) setTimeout(()=>setGoogleLanguage(lang,attempts+1),300);
-   return false;
- }
- if(combo.value!==lang){
-   combo.value=lang;
-   combo.dispatchEvent(new Event('change'));
- }
- return true;
-}
-
-const promptEl=document.getElementById('langPrompt');
-const promptTarget=document.getElementById('langPromptTarget');
-const switchBtn=document.getElementById('langPromptSwitchBtn');
-const keepBtn=document.getElementById('langPromptKeepBtn');
-const closeBtn=document.getElementById('langPromptCloseBtn');
-
-function showLanguageConfirmation(detectedLang){
-  if(!supported(detectedLang) || detectedLang==='en') return;
-  if(sessionStorage.getItem(DISMISSED_KEY)) return;
-
-  const info=getLanguageInfo(detectedLang);
-  if(promptTarget) promptTarget.textContent=info.fullName;
-  if(switchBtn) switchBtn.textContent=`Switch to ${info.fullName}`;
-  if(promptEl){
-    promptEl.dataset.pendingLang=detectedLang;
-    promptEl.classList.add('active');
-  }
-}
-
-function hideLanguageConfirmation(){
-  if(promptEl) promptEl.classList.remove('active');
-}
-
-if(switchBtn){
-  switchBtn.addEventListener('click',()=>{
-    const target=promptEl?promptEl.dataset.pendingLang:'';
-    hideLanguageConfirmation();
-    if(target && supported(target)){
-      select.value=target;
-      applyLanguage(target);
+    * {
+      box-sizing: border-box
     }
-  });
-}
 
-if(keepBtn){
-  keepBtn.addEventListener('click',()=>{
-    hideLanguageConfirmation();
-    select.value='en';
-    localStorage.setItem(STORAGE_KEY,'en');
-    clearGoogleTransCookie();
-    setGoogleLanguage('en');
-  });
-}
-
-if(closeBtn){
-  closeBtn.addEventListener('click',()=>{
-    sessionStorage.setItem(DISMISSED_KEY,'1');
-    hideLanguageConfirmation();
-  });
-}
-
-/* Automatic regional detection.
-   Browser language is preferred when explicitly non-English.
-   Otherwise an approximate IP region is used so visitors (e.g. Tamil Nadu)
-   can be detected for regional languages even when their browser is English.
-*/
-async function detectLocationLanguage(){
- if(supported(browserLang) && browserLang!=='en') return browserLang;
-
- try{
-   const r=await fetch('https://ipapi.co/json/',{cache:'no-store'});
-   if(r.ok){
-     const g=await r.json();
-     if(!g.error){
-       const country=(g.country_code||'').toUpperCase();
-       const region=(g.region||'').toLowerCase();
-
-       if(country==='IN'){
-         if(/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
-         if(/kerala/.test(region)) return 'ml';
-         if(/karnataka/.test(region)) return 'kn';
-         if(/andhra|telangana/.test(region)) return 'te';
-         if(/west bengal/.test(region)) return 'bn';
-         if(/maharashtra/.test(region)) return 'mr';
-         if(/gujarat/.test(region)) return 'gu';
-         if(/punjab/.test(region)) return 'pa';
-       }
-     }
-   }
- }catch(e){}
-
- try{
-   const r2=await fetch('https://ipwho.is/',{cache:'no-store'});
-   if(r2.ok){
-     const g2=await r2.json();
-     if(g2.success){
-       const country=(g2.country_code||'').toUpperCase();
-       const region=(g2.region||'').toLowerCase();
-
-       if(country==='IN'){
-         if(/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
-         if(/kerala/.test(region)) return 'ml';
-         if(/karnataka/.test(region)) return 'kn';
-         if(/andhra|telangana/.test(region)) return 'te';
-         if(/west bengal/.test(region)) return 'bn';
-         if(/maharashtra/.test(region)) return 'mr';
-         if(/gujarat/.test(region)) return 'gu';
-         if(/punjab/.test(region)) return 'pa';
-       }
-     }
-   }
- }catch(e){}
-
- return timezoneMap[timezone] && supported(timezoneMap[timezone])
-   ? timezoneMap[timezone]
-   : (supported(browserLang)?browserLang:'en');
-}
-
-function applyLanguage(lang){
- if(lang==='auto'){
-   localStorage.removeItem(STORAGE_KEY);
-   sessionStorage.removeItem(DISMISSED_KEY);
-   select.disabled=true;
-   detectLocationLanguage().then(detected=>{
-     select.disabled=false;
-     if(detected && detected!=='en' && supported(detected)){
-       select.value='en';
-       showLanguageConfirmation(detected);
-     }else{
-       select.value='en';
-       localStorage.setItem(STORAGE_KEY,'en');
-       clearGoogleTransCookie();
-       setGoogleLanguage('en');
-     }
-   });
-   return;
- }
- localStorage.setItem(STORAGE_KEY,lang);
- try{document.cookie='googtrans=/en/'+lang+';path=/';}catch(e){}
- setGoogleLanguage(lang);
-}
-
-select.addEventListener('change',()=>{
-  hideLanguageConfirmation();
-  applyLanguage(select.value);
-});
-
-window.googleTranslateElementInit=function(){
-  new google.translate.TranslateElement({
-    pageLanguage:'en',
-    includedLanguages:'af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,zh-CN,zh-TW,hr,cs,da,nl,en,et,fi,fr,ka,de,el,gu,he,hi,hu,is,id,ga,it,ja,kn,ko,lv,lt,mk,ms,ml,mr,ne,no,fa,pl,pt,pa,ro,ru,sr,sk,sl,es,sw,sv,ta,te,th,tr,uk,ur,vi,cy,zu',
-    autoDisplay:false
-  },'google_translate_element');
-  const saved=localStorage.getItem(STORAGE_KEY);
-  if(saved && supported(saved)){
-    select.value=saved;
-    if(saved!=='en'){
-      try{document.cookie='googtrans=/en/'+saved+';path=/';}catch(e){}
-      setTimeout(()=>setGoogleLanguage(saved),700);
-    }else{
-      clearGoogleTransCookie();
-      setGoogleLanguage('en');
+    html {
+      scroll-behavior: smooth
     }
-  }else{
-    clearGoogleTransCookie();
-    select.value='en';
-    detectLocationLanguage().then(detected=>{
-      if(detected && detected!=='en' && supported(detected)){
-        showLanguageConfirmation(detected);
+
+    body {
+      margin: 0;
+      font-family: Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--ink);
+      background: #fff;
+      overflow-x: hidden
+    }
+
+    a {
+      text-decoration: none;
+      color: inherit
+    }
+
+    .container {
+      width: min(1180px, 92vw);
+      margin: auto
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 12px
+    }
+
+    .language-wrap {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      border: 1px solid var(--line);
+      background: #fff;
+      border-radius: 999px;
+      padding: 5px 10px;
+      box-shadow: 0 6px 20px #0b2b4f0a
+    }
+
+    .language-wrap select {
+      border: 0;
+      outline: 0;
+      background: transparent;
+      color: #31435c;
+      font-weight: 700;
+      font-size: 13px;
+      max-width: 135px;
+      cursor: pointer
+    }
+
+    .goog-te-banner-frame,
+    .skiptranslate iframe,
+    .goog-logo-link,
+    .goog-te-gadget {
+      display: none !important
+    }
+
+    body {
+      top: 0 !important
+    }
+
+    #google_translate_element {
+      height: 0;
+      overflow: hidden
+    }
+
+    @media(max-width:850px) {
+      .nav-actions .cta {
+        display: none
       }
+
+      .language-wrap select {
+        max-width: 105px
+      }
+    }
+
+    nav {
+      height: 78px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      position: relative;
+      z-index: 5
+    }
+
+    .logo {
+      font-size: 34px;
+      font-weight: 900;
+      letter-spacing: -2px;
+      color: var(--navy)
+    }
+
+    .leaf {
+      color: var(--green)
+    }
+
+    nav .links {
+      display: flex;
+      gap: 28px;
+      font-size: 14px;
+      font-weight: 700;
+      color: #53637a
+    }
+
+    nav .cta {
+      padding: 12px 20px;
+      background: var(--navy);
+      color: #fff;
+      border-radius: 999px
+    }
+
+    .hero {
+      min-height: 760px;
+      position: relative;
+      padding: 55px 0 100px;
+      display: flex;
+      align-items: center;
+      background: radial-gradient(circle at 75% 35%, #dffaf2 0, transparent 35%), linear-gradient(#fff, #f8fffc)
+    }
+
+    .kicker {
+      display: inline-flex;
+      gap: 10px;
+      align-items: center;
+      color: var(--green);
+      font-weight: 900;
+      letter-spacing: 2px;
+      font-size: 12px;
+      text-transform: uppercase
+    }
+
+    .dot {
+      width: 8px;
+      height: 8px;
+      background: var(--green);
+      border-radius: 50%;
+      animation: pulse 1.7s infinite
+    }
+
+    h1 {
+      font-size: clamp(50px, 7vw, 94px);
+      line-height: .95;
+      letter-spacing: -5px;
+      max-width: 920px;
+      margin: 20px 0
+    }
+
+    .gradient {
+      color: var(--green)
+    }
+
+    .sub {
+      font-size: 21px;
+      color: var(--muted);
+      max-width: 680px;
+      line-height: 1.6
+    }
+
+    .hero-buttons {
+      display: flex;
+      gap: 14px;
+      margin-top: 30px;
+      flex-wrap: wrap
+    }
+
+    .btn {
+      padding: 16px 24px;
+      border-radius: 12px;
+      font-weight: 800
+    }
+
+    .primary {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 12px 35px #16a67333
+    }
+
+    .secondary {
+      border: 1px solid var(--line);
+      background: #fff
+    }
+
+    .visual {
+      margin: 70px auto 0;
+      display: grid;
+      grid-template-columns: 230px 1fr 150px;
+      gap: 25px;
+      align-items: end;
+      max-width: 1000px
+    }
+
+    .excel {
+      height: 220px;
+      position: relative;
+      transform: rotate(-4deg);
+      animation: float 5s ease-in-out infinite
+    }
+
+    .sheet {
+      height: 100%;
+      border-radius: 15px;
+      background: #fff;
+      border: 1px solid #d9e5e1;
+      box-shadow: 0 25px 60px #0b2b4f1f;
+      overflow: hidden
+    }
+
+    .sheet-top {
+      height: 35px;
+      background: #20a464
+    }
+
+    .rows {
+      padding: 14px
+    }
+
+    .row {
+      height: 16px;
+      border-bottom: 1px solid #e5eee9;
+      display: grid;
+      grid-template-columns: 1fr .7fr .5fr;
+      gap: 7px
+    }
+
+    .row i {
+      background: #edf4f1;
+      margin: 3px 0;
+      border-radius: 3px
+    }
+
+    .excel-badge {
+      position: absolute;
+      right: -15px;
+      bottom: -12px;
+      background: #168b52;
+      color: #fff;
+      width: 62px;
+      height: 62px;
+      border-radius: 14px;
+      display: grid;
+      place-items: center;
+      font-size: 30px;
+      font-weight: 900;
+      box-shadow: 0 15px 30px #168b5244
+    }
+
+    .arrow {
+      font-size: 55px;
+      color: var(--green);
+      text-align: center;
+      animation: arrow 1.5s ease-in-out infinite
+    }
+
+    .dashboard {
+      background: #fff;
+      border-radius: 20px;
+      border: 1px solid #dce9e5;
+      box-shadow: 0 30px 80px #09203b22;
+      padding: 20px;
+      transform: perspective(900px) rotateY(-5deg);
+      animation: float2 6s ease-in-out infinite
+    }
+
+    .dash-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-weight: 900
+    }
+
+    .brand {
+      color: #176b9d
+    }
+
+    .metrics {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 18px 0
+    }
+
+    .metric {
+      background: #f5faf8;
+      border-radius: 10px;
+      padding: 12px
+    }
+
+    .metric small {
+      display: block;
+      color: #728096
+    }
+
+    .metric b {
+      font-size: 19px
+    }
+
+    .chart {
+      height: 125px;
+      border-radius: 12px;
+      background: linear-gradient(180deg, #f4fbf8, #fff);
+      position: relative;
+      overflow: hidden
+    }
+
+    .chart svg {
+      width: 100%;
+      height: 100%
+    }
+
+    .phone {
+      height: 250px;
+      border: 7px solid #102641;
+      border-radius: 30px;
+      background: #fff;
+      padding: 14px;
+      box-shadow: 0 25px 50px #0b2b4f24;
+      animation: float 4.5s ease-in-out infinite
+    }
+
+    .phone-top {
+      font-weight: 900;
+      margin-bottom: 18px
+    }
+
+    .pitem {
+      padding: 11px 7px;
+      border-bottom: 1px solid #e5ecea;
+      font-size: 12px
+    }
+
+    section {
+      padding: 105px 0
+    }
+
+    .section-head {
+      display: flex;
+      justify-content: space-between;
+      gap: 40px;
+      align-items: end;
+      margin-bottom: 50px
+    }
+
+    .eyebrow {
+      color: var(--green);
+      font-size: 12px;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase
+    }
+
+    .section-head h2 {
+      font-size: clamp(38px, 5vw, 65px);
+      letter-spacing: -3px;
+      line-height: 1;
+      margin: 12px 0 0
+    }
+
+    .section-head p {
+      max-width: 460px;
+      color: var(--muted);
+      line-height: 1.7
+    }
+
+    .case {
+      background: linear-gradient(135deg, #edfff8, #d8f6ec);
+      border-radius: 35px;
+      padding: 55px;
+      overflow: hidden;
+      position: relative
+    }
+
+    .case:before {
+      content: "";
+      position: absolute;
+      width: 450px;
+      height: 450px;
+      border-radius: 50%;
+      background: #fff7;
+      right: -180px;
+      top: -220px
+    }
+
+    .case-title {
+      font-size: 42px;
+      letter-spacing: -2px;
+      max-width: 800px;
+      position: relative
+    }
+
+    .route {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      margin: 18px 0 42px;
+      font-weight: 800
+    }
+
+    .route span {
+      background: #fff;
+      padding: 10px 15px;
+      border-radius: 12px;
+      box-shadow: 0 8px 25px #0b2b4f10
+    }
+
+    .cards {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 18px
+    }
+
+    .card {
+      background: #fff;
+      border: 1px solid #e0ebe7;
+      border-radius: 22px;
+      padding: 28px;
+      min-height: 330px;
+      transition: .4s
+    }
+
+    .card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 25px 50px #0b2b4f15
+    }
+
+    .num {
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      display: grid;
+      place-items: center;
+      background: #dff8ef;
+      color: var(--green);
+      font-weight: 900
+    }
+
+    .card h3 {
+      font-size: 23px
+    }
+
+    .card p,
+    .card li {
+      color: #607089;
+      line-height: 1.65
+    }
+
+    .card ul {
+      padding-left: 20px
+    }
+
+    .price {
+      font-size: 58px;
+      font-weight: 950;
+      color: var(--green);
+      letter-spacing: -3px
+    }
+
+    .quote {
+      background: #e9faf4;
+      padding: 20px;
+      border-radius: 15px;
+      margin-top: 20px;
+      font-style: italic
+    }
+
+    .stats-bar {
+      margin: 0 0 50px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 24px;
+      padding: 26px 32px;
+      box-shadow: 0 15px 40px rgba(11, 43, 79, .05)
+    }
+
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 24px;
+      align-items: center
+    }
+
+    .stat-item {
+      border-right: 1px solid #e7f0ec;
+      padding-right: 20px
+    }
+
+    .stat-item:last-child {
+      border-right: 0;
+      padding-right: 0
+    }
+
+    .stat-num {
+      font-size: clamp(32px, 3.8vw, 44px);
+      font-weight: 950;
+      color: var(--navy);
+      letter-spacing: -2px;
+      line-height: 1;
+      display: flex;
+      align-items: baseline;
+      gap: 2px
+    }
+
+    .stat-accent {
+      color: var(--green)
+    }
+
+    .stat-label {
+      font-size: 13px;
+      font-weight: 800;
+      color: var(--ink);
+      margin-top: 7px;
+      display: block
+    }
+
+    .stat-sub {
+      font-size: 12px;
+      color: var(--muted);
+      margin-top: 3px;
+      display: block;
+      line-height: 1.4
+    }
+
+    .case-tabs {
+      display: flex;
+      gap: 12px;
+      margin: 28px 0 32px;
+      flex-wrap: wrap
+    }
+
+    .case-tab {
+      padding: 13px 20px;
+      border-radius: 14px;
+      border: 1px solid var(--line);
+      background: #fff;
+      font-weight: 800;
+      font-size: 14px;
+      color: #495b74;
+      cursor: pointer;
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      transition: all .25s ease;
+      font-family: inherit
+    }
+
+    .case-tab:hover {
+      border-color: var(--green);
+      color: var(--navy);
+      transform: translateY(-2px)
+    }
+
+    .case-tab.active {
+      background: var(--navy);
+      color: #fff;
+      border-color: var(--navy);
+      box-shadow: 0 10px 25px rgba(7, 27, 58, .2)
+    }
+
+    .case-tab .tag {
+      font-size: 11px;
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: #eef7f3;
+      color: var(--green);
+      font-weight: 900
+    }
+
+    .case-tab.active .tag {
+      background: rgba(88, 224, 193, .22);
+      color: #58e0c1
+    }
+
+    .case-panel {
+      display: none;
+      animation: fadeIn .35s ease
+    }
+
+    .case-panel.active {
+      display: block
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(10px)
+      }
+
+      to {
+        opacity: 1;
+        transform: none
+      }
+    }
+
+    .case-badge {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      background: rgba(22, 166, 115, .12);
+      color: var(--green);
+      font-weight: 900;
+      font-size: 12px;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 6px 14px;
+      border-radius: 999px;
+      margin-bottom: 14px
+    }
+
+    .kpi-row {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 14px;
+      margin: 24px 0 0
+    }
+
+    .kpi-box {
+      background: #fff;
+      border: 1px solid #dbe8e4;
+      border-radius: 16px;
+      padding: 16px 18px;
+      box-shadow: 0 6px 18px rgba(11, 43, 79, .04)
+    }
+
+    .kpi-box small {
+      display: block;
+      font-size: 11px;
+      font-weight: 900;
+      color: var(--green);
+      text-transform: uppercase;
+      letter-spacing: 1px
+    }
+
+    .kpi-box b {
+      font-size: 18px;
+      color: var(--navy);
+      font-weight: 900;
+      display: block;
+      margin: 4px 0 2px;
+      letter-spacing: -.5px
+    }
+
+    .kpi-box span {
+      display: block;
+      font-size: 12px;
+      color: var(--muted);
+      font-weight: 600
+    }
+
+    .comparison-section {
+      margin-top: 60px;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 32px;
+      padding: 45px 48px;
+      box-shadow: 0 20px 60px rgba(11, 43, 79, .06)
+    }
+
+    .comp-head {
+      text-align: center;
+      max-width: 720px;
+      margin: 0 auto 36px
+    }
+
+    .comp-head h3 {
+      font-size: clamp(28px, 3.5vw, 40px);
+      letter-spacing: -2px;
+      margin: 10px 0;
+      line-height: 1.1
+    }
+
+    .comp-head p {
+      color: var(--muted);
+      font-size: 16px;
+      line-height: 1.6
+    }
+
+    .comp-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 24px
+    }
+
+    .comp-card {
+      border-radius: 22px;
+      padding: 32px;
+      position: relative
+    }
+
+    .comp-before {
+      background: #fff8f7;
+      border: 1px solid #fedcd7
+    }
+
+    .comp-after {
+      background: #f3fcf8;
+      border: 1.5px solid #a3ebd2;
+      box-shadow: 0 15px 35px rgba(22, 166, 115, .12)
+    }
+
+    .comp-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      padding: 5px 12px;
+      border-radius: 999px;
+      margin-bottom: 14px
+    }
+
+    .comp-before .comp-pill {
+      background: #fde8e5;
+      color: #c93b2b
+    }
+
+    .comp-after .comp-pill {
+      background: #dcf8ee;
+      color: #0f8a5c
+    }
+
+    .comp-card h4 {
+      font-size: 22px;
+      letter-spacing: -1px;
+      margin: 0 0 10px
+    }
+
+    .comp-before h4 {
+      color: #9e2b1e
+    }
+
+    .comp-after h4 {
+      color: var(--navy)
+    }
+
+    .comp-list {
+      list-style: none;
+      padding: 0;
+      margin: 18px 0 0;
+      display: flex;
+      flex-direction: column;
+      gap: 14px
+    }
+
+    .comp-list li {
+      display: flex;
+      align-items: flex-start;
+      gap: 12px;
+      font-size: 14px;
+      line-height: 1.55
+    }
+
+    .comp-before .comp-list li {
+      color: #5c3530
+    }
+
+    .comp-after .comp-list li {
+      color: #1e354f
+    }
+
+    .comp-icon {
+      font-size: 16px;
+      line-height: 1.2;
+      flex-shrink: 0
+    }
+
+    .comp-highlight {
+      font-weight: 800
+    }
+
+    .impact {
+      background: var(--navy);
+      color: #fff;
+      position: relative;
+      overflow: hidden
+    }
+
+    .impact:before,
+    .impact:after {
+      content: "";
+      position: absolute;
+      border-radius: 50%;
+      border: 1px solid #5ce0c044;
+      animation: orb 8s linear infinite
+    }
+
+    .impact:before {
+      width: 420px;
+      height: 420px;
+      right: -130px;
+      top: -180px
+    }
+
+    .impact:after {
+      width: 250px;
+      height: 250px;
+      left: -120px;
+      bottom: -130px
+    }
+
+    .impact-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 60px;
+      align-items: center
+    }
+
+    .impact h2 {
+      font-size: clamp(45px, 6vw, 78px);
+      line-height: .95;
+      letter-spacing: -4px;
+      margin: 12px 0
+    }
+
+    .impact p {
+      color: #b9c9d8;
+      font-size: 18px;
+      line-height: 1.7
+    }
+
+    .features {
+      display: grid;
+      grid-template-columns: repeat(2, 1fr);
+      gap: 14px
+    }
+
+    .feature {
+      padding: 24px;
+      border: 1px solid #ffffff20;
+      border-radius: 18px;
+      background: #ffffff09
+    }
+
+    .feature b {
+      display: block;
+      margin-bottom: 8px
+    }
+
+    .feature span {
+      color: #a9bacb
+    }
+
+    .impact .btn {
+      display: inline-block;
+      margin-top: 25px;
+      background: #58e0c1;
+      color: #06243a
+    }
+
+    .process {
+      background: #f8fcfb
+    }
+
+    .steps {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 15px
+    }
+
+    .step {
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 25px;
+      position: relative
+    }
+
+    .step:after {
+      content: "→";
+      position: absolute;
+      right: -15px;
+      top: 35px;
+      color: var(--green);
+      font-size: 25px
+    }
+
+    .step:last-child:after {
+      display: none
+    }
+
+    .step strong {
+      font-size: 35px;
+      color: var(--green)
+    }
+
+    footer {
+      padding: 35px 0;
+      border-top: 1px solid #e5ece9
+    }
+
+    .footer {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      color: #6a788b;
+      font-size: 13px
+    }
+
+    .footer .logo {
+      font-size: 27px
+    }
+
+    .reveal {
+      opacity: 0;
+      transform: translateY(35px);
+      transition: opacity .8s ease, transform .8s ease
+    }
+
+    .reveal.show {
+      opacity: 1;
+      transform: none
+    }
+
+    @keyframes float {
+      50% {
+        transform: rotate(-2deg) translateY(-12px)
+      }
+    }
+
+    @keyframes float2 {
+      50% {
+        transform: perspective(900px) rotateY(-2deg) translateY(-10px)
+      }
+    }
+
+    @keyframes arrow {
+      50% {
+        transform: translateX(12px)
+      }
+    }
+
+    @keyframes pulse {
+      50% {
+        box-shadow: 0 0 0 9px #16a67320
+      }
+    }
+
+    @keyframes orb {
+      to {
+        transform: rotate(360deg)
+      }
+    }
+
+    @media(max-width:850px) {
+      nav .links {
+        display: none
+      }
+
+      .hero {
+        padding-top: 30px
+      }
+
+      .visual {
+        grid-template-columns: 1fr;
+        max-width: 620px
+      }
+
+      .arrow {
+        transform: rotate(90deg);
+        margin: -8px 0
+      }
+
+      .dashboard {
+        order: 1
+      }
+
+      .excel {
+        order: 0
+      }
+
+      .phone {
+        order: 2;
+        width: 150px;
+        justify-self: center
+      }
+
+      .cards,
+      .steps,
+      .impact-grid {
+        grid-template-columns: 1fr
+      }
+
+      .steps {
+        gap: 12px
+      }
+
+      .step:after {
+        display: none
+      }
+
+      .case {
+        padding: 30px
+      }
+
+      .case-title {
+        font-size: 34px
+      }
+
+      .section-head {
+        display: block
+      }
+
+      .section-head p {
+        margin-top: 20px
+      }
+
+      .metrics {
+        grid-template-columns: repeat(2, 1fr)
+      }
+
+      .footer {
+        gap: 20px;
+        align-items: flex-start;
+        flex-direction: column
+      }
+
+      h1 {
+        letter-spacing: -3px
+      }
+
+      .stats-grid {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 18px
+      }
+
+      .stat-item {
+        border-right: 0;
+        border-bottom: 1px solid #e7f0ec;
+        padding-bottom: 14px;
+        padding-right: 0
+      }
+
+      .stat-item:nth-child(2n) {
+        border-right: 0
+      }
+
+      .stat-item:nth-last-child(-n+2) {
+        border-bottom: 0;
+        padding-bottom: 0
+      }
+
+      .case-tabs {
+        flex-direction: column
+      }
+
+      .case-tab {
+        width: 100%;
+        justify-content: space-between
+      }
+
+      .kpi-row {
+        grid-template-columns: 1fr
+      }
+
+      .comp-grid {
+        grid-template-columns: 1fr
+      }
+
+      .comparison-section {
+        padding: 30px 20px
+      }
+    }
+
+    .lang-prompt {
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 99999;
+      max-width: 400px;
+      width: calc(100vw - 40px);
+      background: rgba(255, 255, 255, .96);
+      backdrop-filter: blur(18px);
+      -webkit-backdrop-filter: blur(18px);
+      border: 1px solid rgba(22, 166, 115, .28);
+      border-radius: 20px;
+      padding: 20px 22px;
+      box-shadow: 0 22px 50px rgba(7, 27, 58, .18), 0 2px 10px rgba(22, 166, 115, .1);
+      transform: translateY(120%);
+      opacity: 0;
+      transition: transform .4s cubic-bezier(.16, 1, .3, 1), opacity .3s ease;
+      pointer-events: none
+    }
+
+    .lang-prompt.active {
+      transform: translateY(0);
+      opacity: 1;
+      pointer-events: auto
+    }
+
+    .lang-prompt-head {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 12px
+    }
+
+    .lang-prompt-kicker {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      font-size: 11px;
+      font-weight: 900;
+      letter-spacing: 1.5px;
+      text-transform: uppercase;
+      color: var(--green)
+    }
+
+    .lang-prompt-close {
+      background: transparent;
+      border: 0;
+      outline: 0;
+      font-size: 18px;
+      line-height: 1;
+      color: #8a99ad;
+      cursor: pointer;
+      padding: 4px;
+      border-radius: 6px;
+      transition: .2s
+    }
+
+    .lang-prompt-close:hover {
+      color: var(--navy);
+      transform: scale(1.15)
+    }
+
+    .lang-prompt-text {
+      font-size: 14px;
+      line-height: 1.55;
+      color: var(--ink);
+      margin: 0 0 16px
+    }
+
+    .lang-prompt-text strong {
+      color: var(--navy);
+      font-weight: 800
+    }
+
+    .lang-prompt-actions {
+      display: flex;
+      gap: 10px;
+      align-items: center
+    }
+
+    .lang-btn {
+      flex: 1;
+      padding: 12px 14px;
+      border-radius: 12px;
+      font-size: 13px;
+      font-weight: 800;
+      cursor: pointer;
+      text-align: center;
+      transition: all .2s ease;
+      border: 0;
+      font-family: inherit
+    }
+
+    .lang-btn-primary {
+      background: var(--green);
+      color: #fff;
+      box-shadow: 0 8px 20px rgba(22, 166, 115, .28)
+    }
+
+    .lang-btn-primary:hover {
+      background: #139265;
+      transform: translateY(-1px);
+      box-shadow: 0 10px 24px rgba(22, 166, 115, .36)
+    }
+
+    .lang-btn-secondary {
+      background: #f4f8f6;
+      color: var(--navy);
+      border: 1px solid var(--line)
+    }
+
+    .lang-btn-secondary:hover {
+      background: #e7f2ed
+    }
+
+    @media(max-width:600px) {
+      .lang-prompt {
+        bottom: 16px;
+        right: 16px;
+        left: 16px;
+        width: auto;
+        max-width: none
+      }
+
+      .lang-prompt-actions {
+        flex-direction: column-reverse;
+        gap: 8px
+      }
+
+      .lang-btn {
+        width: 100%
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <nav class="container">
+    <a class="logo" href="#">Saarigai<span class="leaf">◆</span></a>
+    <div class="links"><a href="#case">Case Studies</a><a href="#process">How We Build</a><a href="#impact">Why
+        Saarigai</a></div>
+    <div class="nav-actions">
+      <div class="language-wrap"><span>🌐</span><select id="languageSelect" aria-label="Select language">
+          <option value="auto">Auto detect</option>
+          <option value="en">English</option>
+          <option value="ta">தமிழ்</option>
+          <option value="hi">हिन्दी</option>
+          <option value="ml">മലയാളം</option>
+          <option value="te">తెలుగు</option>
+          <option value="kn">ಕನ್ನಡ</option>
+          <option value="bn">বাংলা</option>
+          <option value="mr">मराठी</option>
+          <option value="gu">ગુજરાતી</option>
+          <option value="pa">ਪੰਜਾਬੀ</option>
+          <option value="ur">اردو</option>
+          <option value="ar">العربية</option>
+          <option value="es">Español</option>
+          <option value="fr">Français</option>
+          <option value="de">Deutsch</option>
+          <option value="pt">Português</option>
+          <option value="it">Italiano</option>
+          <option value="nl">Nederlands</option>
+          <option value="ru">Русский</option>
+          <option value="uk">Українська</option>
+          <option value="tr">Türkçe</option>
+          <option value="fa">فارسی</option>
+          <option value="he">עברית</option>
+          <option value="id">Bahasa Indonesia</option>
+          <option value="ms">Bahasa Melayu</option>
+          <option value="th">ไทย</option>
+          <option value="vi">Tiếng Việt</option>
+          <option value="zh-CN">简体中文</option>
+          <option value="zh-TW">繁體中文</option>
+          <option value="ja">日本語</option>
+          <option value="ko">한국어</option>
+          <option value="sw">Kiswahili</option>
+          <option value="am">አማርኛ</option>
+          <option value="af">Afrikaans</option>
+          <option value="sq">Shqip</option>
+          <option value="hy">Հայերեն</option>
+          <option value="az">Azərbaycan</option>
+          <option value="eu">Euskara</option>
+          <option value="be">Беларуская</option>
+          <option value="bs">Bosanski</option>
+          <option value="bg">Български</option>
+          <option value="ca">Català</option>
+          <option value="hr">Hrvatski</option>
+          <option value="cs">Čeština</option>
+          <option value="da">Dansk</option>
+          <option value="et">Eesti</option>
+          <option value="fi">Suomi</option>
+          <option value="ka">ქართული</option>
+          <option value="el">Ελληνικά</option>
+          <option value="hu">Magyar</option>
+          <option value="is">Íslenska</option>
+          <option value="ga">Gaeilge</option>
+          <option value="lv">Latviešu</option>
+          <option value="lt">Lietuvių</option>
+          <option value="mk">Македонски</option>
+          <option value="no">Norsk</option>
+          <option value="pl">Polski</option>
+          <option value="ro">Română</option>
+          <option value="sk">Slovenčina</option>
+          <option value="sl">Slovenščina</option>
+          <option value="sr">Српски</option>
+          <option value="sv">Svenska</option>
+          <option value="cy">Cymraeg</option>
+          <option value="zu">isiZulu</option>
+        </select></div>
+      <a class="cta" href="#contact">Let's build yours →</a>
+    </div>
+  </nav>
+  <div id="google_translate_element" aria-hidden="true"></div>
+
+  <header class="hero">
+    <div class="container">
+      <div class="kicker"><span class="dot"></span> Ideas → Software → Real Scale</div>
+      <h1>We turn Excel businesses<br>into <span class="gradient">software businesses.</span></h1>
+      <p class="sub">Same business. Better tools. Real scale. We use modern AI-assisted engineering to turn
+        spreadsheet-bound operations into custom, high-impact business software — built fast for $2,000.</p>
+      <div class="hero-buttons"><a class="btn primary" href="#case">Explore the 2 case studies ↓</a><a
+          class="btn secondary" href="#contact">Talk to Saarigai</a></div>
+    </div>
+  </header>
+
+  <section id="case" class="container reveal">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Proven Client Results</div>
+        <h2>2 businesses moved from Excel to custom software.</h2>
+      </div>
+      <p>From multi-city acquisition handovers to high-volume wholesale distribution — see how custom-built software
+        unlocked scale, increased profit margins, and restored operational control.</p>
+    </div>
+
+    <!-- Executive Stats Bar -->
+    <div class="stats-bar">
+      <div class="stats-grid">
+        <div class="stat-item">
+          <div class="stat-num">2<span class="stat-accent">+</span></div>
+          <span class="stat-label">Companies Transformed</span>
+          <span class="stat-sub">100% off fragile Excel spreadsheets</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">25<span class="stat-accent">h+</span></div>
+          <span class="stat-label">Weekly Hours Saved</span>
+          <span class="stat-sub">Eliminated manual entry & reconciliation</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num"><span class="stat-accent">+</span>34<span class="stat-accent">%</span></div>
+          <span class="stat-label">Profit & Margin Gains</span>
+          <span class="stat-sub">Stopped stockouts & billing discrepancies</span>
+        </div>
+        <div class="stat-item">
+          <div class="stat-num">3<span class="stat-accent">x</span></div>
+          <span class="stat-label">Order Volume Scaled</span>
+          <span class="stat-sub">Handled growth without adding staff</span>
+        </div>
+      </div>
+    </div>
+
+    <!-- Interactive Case Tabs -->
+    <div class="case-tabs" role="tablist" aria-label="Client Case Studies">
+      <button type="button" class="case-tab active" data-target="case-romana" role="tab" aria-selected="true">
+        <span>🏢 Case 01: Romana</span>
+        <span class="tag">M&A & Ops Handover</span>
+      </button>
+      <button type="button" class="case-tab" data-target="case-jktraders" role="tab" aria-selected="false">
+        <span>🍬 Case 02: JK Traders</span>
+        <span class="tag">Wholesale Sweets & B2B Apps</span>
+      </button>
+      <button type="button" class="case-tab" data-target="all" role="tab" aria-selected="false">
+        <span>⚡ View Both Stories</span>
+      </button>
+    </div>
+
+    <!-- Case 1: Romana -->
+    <div class="case-panel active" id="case-romana">
+      <div class="case">
+        <div class="case-badge">Case 01 · Business Acquisition & Operations</div>
+        <div class="case-title">Acquisition Handover: Running on Software from Day One</div>
+        <div class="route"><span>Romana · Trivandrum</span><b>→</b><span>Kamal · Mumbai</span></div>
+        <div class="cards">
+          <article class="card">
+            <div class="num">1</div>
+            <h3>The situation</h3>
+            <p>Kamal, based in Mumbai, acquired Romana, a Trivandrum-based operation running entirely on spreadsheets.
+            </p>
+            <p>Data was scattered across fragile sheets with zero central visibility, making cross-state coordination,
+              audit trails, and new owner handover nearly impossible.</p>
+          </article>
+          <article class="card">
+            <div class="num">2</div>
+            <h3>What Saarigai did</h3>
+            <p>Using AI-assisted development, Saarigai mapped Romana's real-world processes into a unified custom
+              system.</p>
+            <ul>
+              <li>Mapped end-to-end spreadsheet workflows</li>
+              <li>Built dedicated order, inventory & dispatch dashboards</li>
+              <li>Migrated historical operating data cleanly</li>
+              <li>Delivered mobile & desktop access for team members</li>
+              <li>Launched in days with zero operational downtime</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="num">3</div>
+            <h3>The result & ROI</h3>
+            <p>Kamal took over a business running on custom software from day one.</p>
+            <div class="price">$2,000</div>
+            <div class="quote">“A business that was on spreadsheets is now on software — ready for the future.”</div>
+          </article>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi-box">
+            <small>Scale</small>
+            <b>Multi-City Control</b>
+            <span>Zero middle managers needed</span>
+          </div>
+          <div class="kpi-box">
+            <small>Profit & Margin</small>
+            <b>₹48L+ Revenue Tracked</b>
+            <span>Zero lost invoices or leakage</span>
+          </div>
+          <div class="kpi-box">
+            <small>Manageability</small>
+            <b>Live Mobile Dashboard</b>
+            <span>Staff fully trained in 48 hours</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Case 2: JK Traders -->
+    <div class="case-panel" id="case-jktraders">
+      <div class="case" style="background:linear-gradient(135deg,#fff8f0,#def7ec);margin-top:15px;">
+        <div class="case-badge" style="background:rgba(217,119,6,.12);color:#b45309;">Case 02 · Wholesale Sweets &
+          Dual-App Platform</div>
+        <div class="case-title">JK Traders: From Excel Phone Orders to a Dual-App Wholesale Engine</div>
+        <div class="route"><span>JK Traders · Thoothukudi</span><b>→</b><span>100+ Sweet Retailers & Outlets</span>
+        </div>
+        <div class="cards">
+          <article class="card">
+            <div class="num" style="background:#fef3c7;color:#b45309;">1</div>
+            <h3>The situation</h3>
+            <p>JK Traders, based in Thoothukudi, is a major wholesale seller of iconic regional sweets — including
+              Thoothukudi Macaroons, Srivilliputhur Palkova, and Tirunelveli Halwa.</p>
+            <p>All bulk orders arrived via chaotic phone calls and WhatsApp, manually transcribed into Excel. Fresh
+              batches with tight shelf-lives suffered from order mix-ups, stockouts, and 20+ hours of weekly admin
+              firefighting.</p>
+          </article>
+          <article class="card">
+            <div class="num" style="background:#fef3c7;color:#b45309;">2</div>
+            <h3>What Saarigai built</h3>
+            <p>Saarigai replaced the spreadsheet bottlenecks with a synchronized dual mobile app ecosystem:</p>
+            <ul>
+              <li><strong>Retailer E-Commerce Mobile App:</strong> Sweet shop retailers view live inventory, place bulk
+                orders, and track shipments 24/7</li>
+              <li><strong>Admin Operations Mobile App:</strong> JK Traders team approves orders, allocates fresh
+                batches, and dispatches in 1 click</li>
+              <li>Live stock tracking across Macaroons, Palkova & Halwa</li>
+              <li>Automated digital invoices & instant dispatch manifests</li>
+              <li>Built & deployed in days using AI-assisted engineering</li>
+            </ul>
+          </article>
+          <article class="card">
+            <div class="num" style="background:#fef3c7;color:#b45309;">3</div>
+            <h3>The result & ROI</h3>
+            <p>Turned a manual wholesale operation into a scalable digital sweets distribution powerhouse.</p>
+            <div class="price">$2,000</div>
+            <div class="quote">“Our retailers now order Macaroons and Halwa straight from their mobile app, and our
+              admin app handles dispatch instantly. Zero spreadsheet confusion.”</div>
+          </article>
+        </div>
+        <div class="kpi-row">
+          <div class="kpi-box">
+            <small>Scale</small>
+            <b>3x Order Throughput</b>
+            <span>Retailers order 24/7 on mobile app</span>
+          </div>
+          <div class="kpi-box">
+            <small>Profit & Margin</small>
+            <b>Zero Stockout Spoilage</b>
+            <span>Fresh batch tracking & higher reorders</span>
+          </div>
+          <div class="kpi-box">
+            <small>Manageability</small>
+            <b>Dual Mobile Apps</b>
+            <span>Owner runs wholesale from their phone</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Visual Before & After Section -->
+    <div class="comparison-section reveal">
+      <div class="comp-head">
+        <div class="eyebrow">The Business ROI</div>
+        <h3>Why Modern Operators Leave Spreadsheets Behind</h3>
+        <p>Spreadsheets are great scratchpads, but terrible operational backbones. Here is the tangible shift when you
+          upgrade to Saarigai custom software:</p>
+      </div>
+      <div class="comp-grid">
+        <div class="comp-card comp-before">
+          <span class="comp-pill">❌ The Spreadsheet Ceiling (Before)</span>
+          <h4>Running on Fragile Excel Sheets</h4>
+          <ul class="comp-list">
+            <li>
+              <span class="comp-icon">⚠️</span>
+              <div><span class="comp-highlight">Formula & Data Corruption:</span> One accidental keystroke or broken
+                VLOOKUP silently breaks inventory and invoicing data.</div>
+            </li>
+            <li>
+              <span class="comp-icon">⏳</span>
+              <div><span class="comp-highlight">20–25 Hours Lost Weekly:</span> Leadership and staff waste hours
+                manually copying data between disparate sheets and emails.</div>
+            </li>
+            <li>
+              <span class="comp-icon">📉</span>
+              <div><span class="comp-highlight">Hidden Margin Bleed:</span> Unseen stockouts, double-ordered items, and
+                billing discrepancies cost thousands every quarter.</div>
+            </li>
+            <li>
+              <span class="comp-icon">🔒</span>
+              <div><span class="comp-highlight">Zero Real-Time Visibility:</span> Data trapped on local desktops; no
+                mobile access for owners, dispatchers, or remote managers.</div>
+            </li>
+            <li>
+              <span class="comp-icon">🛑</span>
+              <div><span class="comp-highlight">Growth Bottleneck:</span> Scaling transaction volume requires hiring
+                more administrative staff just to manage sheets.</div>
+            </li>
+          </ul>
+        </div>
+
+        <div class="comp-card comp-after">
+          <span class="comp-pill">✅ The Saarigai Advantage (After)</span>
+          <h4>Running on Custom Business Software</h4>
+          <ul class="comp-list">
+            <li>
+              <span class="comp-icon">⚡</span>
+              <div><span class="comp-highlight">Single Source of Truth:</span> Live cloud database with encrypted access
+                across web and mobile anywhere in the world.</div>
+            </li>
+            <li>
+              <span class="comp-icon">🚀</span>
+              <div><span class="comp-highlight">Automated Pipelines:</span> Orders, inventory updates, and invoices
+                trigger automatically with 99.9% accuracy.</div>
+            </li>
+            <li>
+              <span class="comp-icon">📈</span>
+              <div><span class="comp-highlight">Protected Profit Margins:</span> Real-time cost analytics, automated
+                reorder triggers, and zero invoicing oversights.</div>
+            </li>
+            <li>
+              <span class="comp-icon">📱</span>
+              <div><span class="comp-highlight">Manage From Anywhere:</span> Founder gets instant KPI dashboards on
+                their phone while teams execute smoothly.</div>
+            </li>
+            <li>
+              <span class="comp-icon">💎</span>
+              <div><span class="comp-highlight">Frictionless 10x Scale:</span> Handle 3x–10x order volume effortlessly
+                for a flat $2,000 build investment.</div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="process" class="process">
+    <div class="container reveal">
+      <div class="section-head">
+        <div>
+          <div class="eyebrow">How We Build</div>
+          <h2>From messy workflow to clean software.</h2>
+        </div>
+        <p>We start with the way your business already works, then build the system around it.</p>
+      </div>
+      <div class="steps">
+        <div class="step"><strong>01</strong>
+          <h3>Understand</h3>
+          <p>We map your spreadsheets, people, processes and pain points.</p>
+        </div>
+        <div class="step"><strong>02</strong>
+          <h3>Design</h3>
+          <p>We turn the workflow into simple screens, rules and dashboards.</p>
+        </div>
+        <div class="step"><strong>03</strong>
+          <h3>Build</h3>
+          <p>AI-assisted development accelerates the custom implementation.</p>
+        </div>
+        <div class="step"><strong>04</strong>
+          <h3>Launch</h3>
+          <p>We migrate data and give your team a system they can actually use.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="impact" class="impact">
+    <div class="container impact-grid reveal">
+      <div>
+        <div class="eyebrow">Why Saarigai</div>
+        <h2>Custom software.<br>Real business impact.</h2>
+        <p>Your business doesn't need to change to fit generic software. Your software should fit your business.</p><a
+          class="btn" href="#contact">Turn your Excel into software →</a>
+      </div>
+      <div class="features">
+        <div class="feature"><b>⚡ Fast</b><span>Build focused systems without traditional development overhead.</span>
+        </div>
+        <div class="feature"><b>◉ Affordable</b><span>Modern AI-assisted development can dramatically reduce build
+            cost.</span></div>
+        <div class="feature"><b>⚙ Tailored</b><span>Designed around your actual workflows, not generic
+            assumptions.</span></div>
+        <div class="feature"><b>↗ Built with AI</b><span>Use AI where it creates leverage while keeping business logic
+            deliberate.</span></div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contact" class="container reveal">
+    <div class="section-head">
+      <div>
+        <div class="eyebrow">Ready?</div>
+        <h2>Your spreadsheets could be your next software system.</h2>
+      </div>
+      <p>Bring the workflow. Saarigai can help turn it into a focused digital system.</p>
+    </div>
+    <div class="case" style="text-align:center">
+      <div class="case-title" style="margin:auto">Let's build yours.</div>
+      <p class="sub" style="margin:20px auto">Custom business software for small businesses with big possibilities.</p>
+      <a class="btn primary" href="mailto:hello@saarigai.com">Start a conversation →</a>
+    </div>
+  </section>
+
+  <footer>
+    <div class="container footer">
+      <div class="logo">Saarigai<span class="leaf">◆</span></div>
+      <div>BUSINESS SOFTWARE FOR A BRIGHTER TOMORROW</div>
+      <div>www.saarigai.com · 🌐 100+ languages</div>
+    </div>
+  </footer>
+
+  <aside class="lang-prompt notranslate" id="langPrompt" role="dialog" aria-labelledby="langPromptTitle"
+    aria-live="polite">
+    <div class="lang-prompt-head">
+      <div class="lang-prompt-kicker" id="langPromptTitle"><span class="dot"></span> Language Preference</div>
+      <button type="button" class="lang-prompt-close" id="langPromptCloseBtn"
+        aria-label="Close language confirmation">✕</button>
+    </div>
+    <p class="lang-prompt-text">Would you like to switch from English to <strong id="langPromptTarget">Tamil
+        (தமிழ்)</strong>?</p>
+    <div class="lang-prompt-actions">
+      <button type="button" class="lang-btn lang-btn-primary" id="langPromptSwitchBtn">Switch to Tamil (தமிழ்)</button>
+      <button type="button" class="lang-btn lang-btn-secondary" id="langPromptKeepBtn">Stay in English</button>
+    </div>
+  </aside>
+
+  <script>
+    const observer = new IntersectionObserver(entries => entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('show') }), { threshold: .12 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    // Dual case study switcher
+    function switchCaseStudy(tabId) {
+      document.querySelectorAll('.case-tab').forEach(b => {
+        const match = b.dataset.target === tabId;
+        b.classList.toggle('active', match);
+        b.setAttribute('aria-selected', match ? 'true' : 'false');
+      });
+      document.querySelectorAll('.case-panel').forEach(p => {
+        if (tabId === 'all') {
+          p.classList.add('active');
+        } else {
+          p.classList.toggle('active', p.id === tabId);
+        }
+      });
+    }
+    document.querySelectorAll('.case-tab').forEach(btn => {
+      btn.addEventListener('click', () => switchCaseStudy(btn.dataset.target));
     });
-  }
-};
-const gt=document.createElement('script');
-gt.src='https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
-gt.async=true;
-document.head.appendChild(gt);
-</script>
+
+    const select = document.getElementById('languageSelect');
+    const STORAGE_KEY = 'saarigai-language';
+    const DISMISSED_KEY = 'saarigai-lang-dismissed';
+
+    function normalizeLang(v) {
+      if (!v) return 'en';
+      const x = v.toLowerCase();
+      if (x.startsWith('zh-tw') || x.startsWith('zh-hk')) return 'zh-TW';
+      if (x.startsWith('zh')) return 'zh-CN';
+      return x.split('-')[0];
+    }
+    const browserLang = normalizeLang(navigator.language || 'en');
+    const timezone = (typeof Intl !== 'undefined' && Intl.DateTimeFormat)
+      ? Intl.DateTimeFormat().resolvedOptions().timeZone
+      : (navigator.timeZone || '');
+
+    const timezoneMap = {
+      'Asia/Colombo': 'ta', 'Asia/Dhaka': 'bn', 'Asia/Kathmandu': 'ne', 'Asia/Karachi': 'ur',
+      'Asia/Dubai': 'ar', 'Asia/Riyadh': 'ar', 'Asia/Jerusalem': 'he', 'Asia/Tehran': 'fa',
+      'Asia/Tokyo': 'ja', 'Asia/Seoul': 'ko', 'Asia/Shanghai': 'zh-CN', 'Asia/Hong_Kong': 'zh-TW',
+      'Asia/Kuala_Lumpur': 'ms', 'Asia/Bangkok': 'th', 'Asia/Ho_Chi_Minh': 'vi',
+      'Europe/Paris': 'fr', 'Europe/Berlin': 'de', 'Europe/Madrid': 'es', 'Europe/Rome': 'it',
+      'Europe/Lisbon': 'pt', 'Europe/Amsterdam': 'nl', 'Europe/Warsaw': 'pl', 'Europe/Moscow': 'ru',
+      'Europe/Stockholm': 'sv', 'Europe/Oslo': 'no', 'Europe/Copenhagen': 'da',
+      'Europe/Helsinki': 'fi', 'Europe/Athens': 'el', 'Europe/Bucharest': 'ro',
+      'America/Mexico_City': 'es', 'America/Sao_Paulo': 'pt', 'Africa/Cairo': 'ar',
+      'Africa/Nairobi': 'sw', 'Africa/Addis_Ababa': 'am'
+    };
+
+    const languageDisplayNames = {
+      ta: { english: 'Tamil', native: 'தமிழ்' },
+      hi: { english: 'Hindi', native: 'हिन्दी' },
+      ml: { english: 'Malayalam', native: 'മലയാളം' },
+      te: { english: 'Telugu', native: 'తెలుగు' },
+      kn: { english: 'Kannada', native: 'ಕನ್ನಡ' },
+      bn: { english: 'Bengali', native: 'বাংলা' },
+      mr: { english: 'Marathi', native: 'मराठी' },
+      gu: { english: 'Gujarati', native: 'ગુજરાતી' },
+      pa: { english: 'Punjabi', native: 'ਪੰਜਾਬੀ' },
+      ur: { english: 'Urdu', native: 'اردو' },
+      ar: { english: 'Arabic', native: 'العربية' },
+      es: { english: 'Spanish', native: 'Español' },
+      fr: { english: 'French', native: 'Français' },
+      de: { english: 'German', native: 'Deutsch' },
+      pt: { english: 'Portuguese', native: 'Português' },
+      it: { english: 'Italian', native: 'Italiano' },
+      nl: { english: 'Dutch', native: 'Nederlands' },
+      ru: { english: 'Russian', native: 'Русский' },
+      uk: { english: 'Ukrainian', native: 'Українська' },
+      tr: { english: 'Turkish', native: 'Türkçe' },
+      fa: { english: 'Persian', native: 'فارسی' },
+      he: { english: 'Hebrew', native: 'עברית' },
+      id: { english: 'Indonesian', native: 'Bahasa Indonesia' },
+      ms: { english: 'Malay', native: 'Bahasa Melayu' },
+      th: { english: 'Thai', native: 'ไทย' },
+      vi: { english: 'Vietnamese', native: 'Tiếng Việt' },
+      'zh-CN': { english: 'Simplified Chinese', native: '简体中文' },
+      'zh-TW': { english: 'Traditional Chinese', native: '繁體中文' },
+      ja: { english: 'Japanese', native: '日本語' },
+      ko: { english: 'Korean', native: '한국어' },
+      sw: { english: 'Swahili', native: 'Kiswahili' },
+      ne: { english: 'Nepali', native: 'नेपाली' }
+    };
+
+    function supported(code) { return [...select.options].some(o => o.value === code) }
+
+    function getLanguageInfo(code) {
+      if (languageDisplayNames[code]) {
+        const item = languageDisplayNames[code];
+        return {
+          fullName: `${item.english} (${item.native})`,
+          shortName: item.native || item.english,
+          englishName: item.english
+        };
+      }
+      const opt = select.querySelector(`option[value="${code}"]`);
+      const text = opt ? opt.textContent : code;
+      return { fullName: text, shortName: text, englishName: text };
+    }
+
+    function clearGoogleTransCookie() {
+      try {
+        const host = window.location.hostname;
+        document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;';
+        document.cookie = 'googtrans=/en/en; path=/;';
+        if (host) {
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=' + host + ';';
+          document.cookie = 'googtrans=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/; domain=.' + host + ';';
+        }
+      } catch (e) { }
+    }
+
+    function setGoogleLanguage(lang, attempts = 0) {
+      const combo = document.querySelector('.goog-te-combo');
+      if (!combo) {
+        if (attempts < 10) setTimeout(() => setGoogleLanguage(lang, attempts + 1), 300);
+        return false;
+      }
+      if (combo.value !== lang) {
+        combo.value = lang;
+        combo.dispatchEvent(new Event('change'));
+      }
+      return true;
+    }
+
+    const promptEl = document.getElementById('langPrompt');
+    const promptTarget = document.getElementById('langPromptTarget');
+    const switchBtn = document.getElementById('langPromptSwitchBtn');
+    const keepBtn = document.getElementById('langPromptKeepBtn');
+    const closeBtn = document.getElementById('langPromptCloseBtn');
+
+    function showLanguageConfirmation(detectedLang) {
+      if (!supported(detectedLang) || detectedLang === 'en') return;
+      if (sessionStorage.getItem(DISMISSED_KEY)) return;
+
+      const info = getLanguageInfo(detectedLang);
+      if (promptTarget) promptTarget.textContent = info.fullName;
+      if (switchBtn) switchBtn.textContent = `Switch to ${info.fullName}`;
+      if (promptEl) {
+        promptEl.dataset.pendingLang = detectedLang;
+        promptEl.classList.add('active');
+      }
+    }
+
+    function hideLanguageConfirmation() {
+      if (promptEl) promptEl.classList.remove('active');
+    }
+
+    if (switchBtn) {
+      switchBtn.addEventListener('click', () => {
+        const target = promptEl ? promptEl.dataset.pendingLang : '';
+        hideLanguageConfirmation();
+        if (target && supported(target)) {
+          select.value = target;
+          applyLanguage(target);
+        }
+      });
+    }
+
+    if (keepBtn) {
+      keepBtn.addEventListener('click', () => {
+        hideLanguageConfirmation();
+        select.value = 'en';
+        localStorage.setItem(STORAGE_KEY, 'en');
+        clearGoogleTransCookie();
+        setGoogleLanguage('en');
+      });
+    }
+
+    if (closeBtn) {
+      closeBtn.addEventListener('click', () => {
+        sessionStorage.setItem(DISMISSED_KEY, '1');
+        hideLanguageConfirmation();
+      });
+    }
+
+    /* Automatic regional detection.
+       Browser language is preferred when explicitly non-English.
+       Otherwise an approximate IP region is used so visitors (e.g. Tamil Nadu)
+       can be detected for regional languages even when their browser is English.
+    */
+    async function detectLocationLanguage() {
+      if (supported(browserLang) && browserLang !== 'en') return browserLang;
+
+      try {
+        const r = await fetch('https://ipapi.co/json/', { cache: 'no-store' });
+        if (r.ok) {
+          const g = await r.json();
+          if (!g.error) {
+            const country = (g.country_code || '').toUpperCase();
+            const region = (g.region || '').toLowerCase();
+
+            if (country === 'IN') {
+              if (/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
+              if (/kerala/.test(region)) return 'ml';
+              if (/karnataka/.test(region)) return 'kn';
+              if (/andhra|telangana/.test(region)) return 'te';
+              if (/west bengal/.test(region)) return 'bn';
+              if (/maharashtra/.test(region)) return 'mr';
+              if (/gujarat/.test(region)) return 'gu';
+              if (/punjab/.test(region)) return 'pa';
+            }
+          }
+        }
+      } catch (e) { }
+
+      try {
+        const r2 = await fetch('https://ipwho.is/', { cache: 'no-store' });
+        if (r2.ok) {
+          const g2 = await r2.json();
+          if (g2.success) {
+            const country = (g2.country_code || '').toUpperCase();
+            const region = (g2.region || '').toLowerCase();
+
+            if (country === 'IN') {
+              if (/tamil\s*nadu|tamilnadu/.test(region)) return 'ta';
+              if (/kerala/.test(region)) return 'ml';
+              if (/karnataka/.test(region)) return 'kn';
+              if (/andhra|telangana/.test(region)) return 'te';
+              if (/west bengal/.test(region)) return 'bn';
+              if (/maharashtra/.test(region)) return 'mr';
+              if (/gujarat/.test(region)) return 'gu';
+              if (/punjab/.test(region)) return 'pa';
+            }
+          }
+        }
+      } catch (e) { }
+
+      return timezoneMap[timezone] && supported(timezoneMap[timezone])
+        ? timezoneMap[timezone]
+        : (supported(browserLang) ? browserLang : 'en');
+    }
+
+    function applyLanguage(lang) {
+      if (lang === 'auto') {
+        localStorage.removeItem(STORAGE_KEY);
+        sessionStorage.removeItem(DISMISSED_KEY);
+        select.disabled = true;
+        detectLocationLanguage().then(detected => {
+          select.disabled = false;
+          if (detected && detected !== 'en' && supported(detected)) {
+            select.value = 'en';
+            showLanguageConfirmation(detected);
+          } else {
+            select.value = 'en';
+            localStorage.setItem(STORAGE_KEY, 'en');
+            clearGoogleTransCookie();
+            setGoogleLanguage('en');
+          }
+        });
+        return;
+      }
+      localStorage.setItem(STORAGE_KEY, lang);
+      try { document.cookie = 'googtrans=/en/' + lang + ';path=/'; } catch (e) { }
+      setGoogleLanguage(lang);
+    }
+
+    select.addEventListener('change', () => {
+      hideLanguageConfirmation();
+      applyLanguage(select.value);
+    });
+
+    window.googleTranslateElementInit = function () {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en',
+        includedLanguages: 'af,sq,am,ar,hy,az,eu,be,bn,bs,bg,ca,zh-CN,zh-TW,hr,cs,da,nl,en,et,fi,fr,ka,de,el,gu,he,hi,hu,is,id,ga,it,ja,kn,ko,lv,lt,mk,ms,ml,mr,ne,no,fa,pl,pt,pa,ro,ru,sr,sk,sl,es,sw,sv,ta,te,th,tr,uk,ur,vi,cy,zu',
+        autoDisplay: false
+      }, 'google_translate_element');
+      const saved = localStorage.getItem(STORAGE_KEY);
+      if (saved && supported(saved)) {
+        select.value = saved;
+        if (saved !== 'en') {
+          try { document.cookie = 'googtrans=/en/' + saved + ';path=/'; } catch (e) { }
+          setTimeout(() => setGoogleLanguage(saved), 700);
+        } else {
+          clearGoogleTransCookie();
+          setGoogleLanguage('en');
+        }
+      } else {
+        clearGoogleTransCookie();
+        select.value = 'en';
+        detectLocationLanguage().then(detected => {
+          if (detected && detected !== 'en' && supported(detected)) {
+            showLanguageConfirmation(detected);
+          }
+        });
+      }
+    };
+    const gt = document.createElement('script');
+    gt.src = 'https://translate.google.com/translate_a/element.js?cb=googleTranslateElementInit';
+    gt.async = true;
+    document.head.appendChild(gt);
+  </script>
 </body>
+
 </html>
